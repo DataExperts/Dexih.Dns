@@ -14,6 +14,7 @@ namespace Dexih.Dns
     {
         static void Main(string[] args)
         {
+            var txtUrl = Environment.GetEnvironmentVariable("DNS_TXT_URL");
             var rootIpAddress = Environment.GetEnvironmentVariable("ROOT_IP_ADDRESS");
             var rootDomain = Environment.GetEnvironmentVariable("ROOT_DOMAIN");
             var dnsIpAddresses = Environment.GetEnvironmentVariable("DNS_IP_ADDRESS").Split(',');
@@ -21,7 +22,7 @@ namespace Dexih.Dns
             var timeStamp = long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
             var ttl = int.Parse(Environment.GetEnvironmentVariable("DNS_TTL"));
 
-            var dns = new WildcardDns(rootIpAddress, dnsIpAddresses, rootDomain, email, timeStamp, ttl);
+            var dns = new WildcardDns(rootIpAddress, dnsIpAddresses, rootDomain, email, timeStamp, ttl, txtUrl);
             dns.Listen().Wait();
         }
 

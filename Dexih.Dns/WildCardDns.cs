@@ -19,8 +19,9 @@ namespace Dexih.Dns
         private string _email;
         private long _timeStamp;
         private int _ttl;
+        private string _txtUrl;
 
-        public WildcardDns(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl)
+        public WildcardDns(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
             _rootIpAddress = rootIpAddress;
             _dnsIpAddresses = dnsIpAddresses;
@@ -28,12 +29,13 @@ namespace Dexih.Dns
             _email = email;
             _timeStamp = timeStamp;
             _ttl = ttl;
+            _txtUrl = txtUrl;
         }
 
         public async Task Listen(bool logRequests = true, bool logErrors = true)
         {
             // All dns requests received will be handled by the request resolver
-            DnsServer server = new DnsServer(new RequestResolver(_rootIpAddress, _dnsIpAddresses, _rootDomain, _email, _timeStamp, _ttl));
+            DnsServer server = new DnsServer(new RequestResolver(_rootIpAddress, _dnsIpAddresses, _rootDomain, _email, _timeStamp, _ttl, _txtUrl));
 
             if (logRequests)
             {
