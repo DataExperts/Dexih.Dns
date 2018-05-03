@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexih.Dns", "Dexih.Dns\Dexih.Dns.csproj", "{1F9F4B73-FF73-40C4-94E6-EA9AF98DF976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dexih.Dns", "Dexih.Dns\Dexih.Dns.csproj", "{1F9F4B73-FF73-40C4-94E6-EA9AF98DF976}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{00015638-0263-4EC9-B71A-F8EC3C50BE77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1F9F4B73-FF73-40C4-94E6-EA9AF98DF976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9F4B73-FF73-40C4-94E6-EA9AF98DF976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9F4B73-FF73-40C4-94E6-EA9AF98DF976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  dexih.dns:
+    image: dexihdns
+    build:
+      context: .
+      dockerfile: Dexih.Dns/Dockerfile
