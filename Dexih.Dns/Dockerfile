@@ -3,11 +3,8 @@ WORKDIR /app
 
 FROM microsoft/dotnet:2.0-sdk AS build
 WORKDIR /src
-COPY Dexih.Dns.sln ./
-COPY Dexih.Dns/Dexih.Dns.csproj Dexih.Dns/
-RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/Dexih.Dns
+RUN dotnet restore 
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
@@ -22,5 +19,7 @@ ENV ROOT_DOMAIN=dexih.com
 ENV DNS_IP_ADDRESS=60.224.193.14
 ENV DNS_EMAIL=gholland.dataexpertsgroup.com
 ENV DNS_TTL=300
+
+EXPOSE 53:53
 
 ENTRYPOINT ["dotnet", "Dexih.Dns.dll"]
