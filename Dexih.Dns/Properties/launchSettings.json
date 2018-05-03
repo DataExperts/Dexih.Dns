@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Dexih.Dns": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DNS_IP_ADDRESS": "60.224.193.14",
+        "DNS_TTL": "300",
+        "DNS_EMAIL": "gholland.dataexpertsgroup.com",
+        "ROOT_DOMAIN": "dexih.com",
+        "ROOT_IP_ADDRESS": "104.18.32.48"
+      }
+    }
+  }
+}
