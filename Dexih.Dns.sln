@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dexih.Dns", "Dexih.Dns\Dexi
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{00015638-0263-4EC9-B71A-F8EC3C50BE77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Txt", "..\Test.Txt\Test.Txt.csproj", "{1907FECE-8D9E-455C-B18C-A381846FCB18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00015638-0263-4EC9-B71A-F8EC3C50BE77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1907FECE-8D9E-455C-B18C-A381846FCB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1907FECE-8D9E-455C-B18C-A381846FCB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1907FECE-8D9E-455C-B18C-A381846FCB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1907FECE-8D9E-455C-B18C-A381846FCB18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

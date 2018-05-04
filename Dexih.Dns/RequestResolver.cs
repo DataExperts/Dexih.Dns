@@ -1,11 +1,13 @@
 ﻿using DNS.Client.RequestResolver;
 using DNS.Protocol;
 using DNS.Protocol.ResourceRecords;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,8 +23,9 @@ namespace Dexih.Dns
         private IPAddress[] _dnsIpAddresses;
         private long _timeStamp;
         private TimeSpan _ttl;
+        private string _txtUrl;
 
-        public RequestResolver(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl)
+        public RequestResolver(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
             _ipAddressRecords = new ConcurrentDictionary<string, IPAddress>();
 
@@ -48,10 +51,11 @@ namespace Dexih.Dns
             _email = new Domain(email.Replace('@', '.'));
             _timeStamp = timeStamp;
             _ttl = TimeSpan.FromSeconds(ttl);
+            _txtUrl = txtUrl;
         }
 
         // A request resolver that resolves all dns queries to localhost
-        public Task<IResponse> Resolve(IRequest request)
+        public async Task<IResponse> Resolve(IRequest request)
         {
             IResponse response = Response.FromRequest(request);
 
@@ -68,6 +72,18 @@ namespace Dexih.Dns
                     for (var i = 0; i < _nsDomains.Length; i++)
                     {
                         response.AnswerRecords.Add(new NameServerResourceRecord(_nsDomains[i], _nsDomains[i], _ttl));
+                    }
+                }
+
+                if(question.Type == RecordType.TXT)
+                {
+                    var httpClient = new HttpClient();
+                    var txtResponse = await httpClient.GetAsync(_txtUrl);
+                    var txtValues = JsonConvert.DeserializeObject<IEnumerable<KeyValuePair<string, string>>>(await txtResponse.Content.ReadAsStringAsync());
+
+                    foreach(var txtValue in txtValues )
+                    {
+                        response.AnswerRecords.Add(new TextResourceRecord(question.Name, txtValue.Key, txtValue.Value, _ttl));
                     }
                 }
 
@@ -89,14 +105,14 @@ namespace Dexih.Dns
                     {
                         if (IPAddress.TryParse(domain[0].Replace('-', '.'), out var iPAddress))
                         {
-                            IResourceRecord record = new IPAddressResourceRecord(question.Name, iPAddress, _ttl);
+                            var record = new IPAddressResourceRecord(question.Name, iPAddress, _ttl);
                             response.AnswerRecords.Add(record);
                         }
                     }
                 }
             }
 
-            return Task.FromResult(response);
+            return response;
         }
     }
 }
