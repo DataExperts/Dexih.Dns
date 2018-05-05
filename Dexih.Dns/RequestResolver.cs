@@ -61,7 +61,7 @@ namespace Dexih.Dns
 
             foreach (Question question in response.Questions)
             {
-                if (question.Type == RecordType.SOA || question.Type == RecordType.NS || question.Type == RecordType.CAA)
+                if (question.Type == RecordType.SOA || question.Type == RecordType.NS)
                 {
                     var record = new StartOfAuthorityResourceRecord(question.Name, _nsDomains[0], _email, _timeStamp, _ttl, _ttl, _ttl, _ttl, _ttl);
                     response.AuthorityRecords.Add(record);
