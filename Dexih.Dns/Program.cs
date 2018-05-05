@@ -19,11 +19,25 @@ namespace Dexih.Dns
             var rootDomain = Environment.GetEnvironmentVariable("ROOT_DOMAIN");
             var dnsIpAddresses = Environment.GetEnvironmentVariable("DNS_IP_ADDRESS").Split(',');
             var email = Environment.GetEnvironmentVariable("DNS_EMAIL");
-            var timeStamp = long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
-            var ttl = int.Parse(Environment.GetEnvironmentVariable("DNS_TTL"));
+            var timeStamp = 2018040501; // long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
+            var ttl = int.Parse(Environment.GetEnvironmentVariable("DNS_TTL")??"300");
 
-            var dns = new WildcardDns(rootIpAddress, dnsIpAddresses, rootDomain, email, timeStamp, ttl, txtUrl);
-            dns.Listen().Wait();
+            var logRequests = bool.Parse(Environment.GetEnvironmentVariable("LOG_REQUESTS")??"true");
+            var logErrors = bool.Parse(Environment.GetEnvironmentVariable("LOG_ERRORS") ?? "true");
+
+            while(true)
+            {
+                try
+                {
+                    var dns = new WildcardDns(rootIpAddress, dnsIpAddresses, rootDomain, email, timeStamp, ttl, txtUrl);
+                    dns.Listen(logRequests, logErrors).Wait();
+                }
+                catch(Exception ex)
+                {
+                    Console.Error.WriteLine("Error occurred: " + ex.Message);
+                }
+
+            }
         }
 
     }

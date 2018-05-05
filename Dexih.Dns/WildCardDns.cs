@@ -23,6 +23,34 @@ namespace Dexih.Dns
 
         public WildcardDns(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
+            if(string.IsNullOrEmpty(rootIpAddress) ||  !IPAddress.TryParse(rootIpAddress, out _))
+            {
+                throw new DnsException($"The Root IP Address {rootIpAddress} is invalid.");
+            }
+
+            if(dnsIpAddresses == null || dnsIpAddresses.Length == 0)
+            {
+                throw new DnsException($"There are no DNS IP Addresses set.");
+            }
+
+            foreach(var ipAddress in dnsIpAddresses)
+            {
+                if (string.IsNullOrEmpty(ipAddress) || !IPAddress.TryParse(ipAddress, out _))
+                {
+                    throw new DnsException($"The DNS IP Address {ipAddress} is invalid.");
+                }
+            }
+
+            if(string.IsNullOrEmpty(rootDomain) || Uri.CheckHostName(rootDomain) != UriHostNameType.Dns)
+            {
+                throw new DnsException($"The Root Domain {rootDomain} is invalid.");
+            }
+
+            if (string.IsNullOrEmpty(email) || Uri.CheckHostName(email) != UriHostNameType.Dns)
+            {
+                throw new DnsException($"The Email {email} is invalid.  Use the format username.gmail.com (rather than username@gmail.com)");
+            }
+
             _rootIpAddress = rootIpAddress;
             _dnsIpAddresses = dnsIpAddresses;
             _rootDomain = rootDomain;
@@ -56,16 +84,21 @@ namespace Dexih.Dns
 
         public void LogRequest(IRequest request)
         {
-            Console.WriteLine($"Request: Id:{request.Id}, Query: {request.Questions.Count()}.");
-            foreach(var question in request.Questions)
-            {
-                Console.WriteLine($"  Question: {question.Name}\t{question.Type}");
-            }
+            //Console.WriteLine($"Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Count()}.");
+            //foreach(var question in request.Questions)
+            //{
+            //    Console.WriteLine($"  Question: {question.Name}\t{question.Type}");
+            //}
         }
 
         public void LogResponse(IResponse response)
         {
             Console.WriteLine($"Response: Id:{response.Id}, Query: {response.Questions.Count()}, Answers: {response.AnswerRecords.Count()}, Authority: {response.AuthorityRecords.Count()}, Additional: {response.AdditionalRecords.Count()}.");
+
+            foreach (var question in response.Questions)
+            {
+                Console.WriteLine($"  Question: {question.Name}\t{question.Type}");
+            }
 
             foreach (StartOfAuthorityResourceRecord auth in response.AuthorityRecords)
             {
@@ -77,6 +110,7 @@ namespace Dexih.Dns
                 switch(record.Type)
                 {
                     case RecordType.A:
+                    case RecordType.AAAA:
                         IPAddressResourceRecord rec = (IPAddressResourceRecord) record;
                         Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{rec.IPAddress}");
                         break;
@@ -85,7 +119,7 @@ namespace Dexih.Dns
                         Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{nsrec.NSDomainName}");
                         break;
                     default:
-                        Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{record.Data}");
+                        Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{Encoding.UTF8.GetString(record.Data)}");
                         break;
                 }
             }

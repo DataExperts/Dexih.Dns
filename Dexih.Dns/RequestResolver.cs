@@ -37,7 +37,7 @@ namespace Dexih.Dns
             }
             
             _rootDomain = new Domain(rootDomain);
-            _rootDomainComponents = rootDomain.Split('.');
+            _rootDomainComponents = rootDomain.ToLower().Split('.');
 
             _dnsIpAddresses = dnsIpAddresses.Select(c => IPAddress.Parse(c)).ToArray();
 
@@ -61,7 +61,7 @@ namespace Dexih.Dns
 
             foreach (Question question in response.Questions)
             {
-                if (question.Type == RecordType.SOA || question.Type == RecordType.NS)
+                if (question.Type == RecordType.SOA || question.Type == RecordType.NS || question.Type == RecordType.CAA)
                 {
                     var record = new StartOfAuthorityResourceRecord(question.Name, _nsDomains[0], _email, _timeStamp, _ttl, _ttl, _ttl, _ttl, _ttl);
                     response.AuthorityRecords.Add(record);
@@ -77,17 +77,28 @@ namespace Dexih.Dns
 
                 if(question.Type == RecordType.TXT)
                 {
-                    var httpClient = new HttpClient();
-                    var txtResponse = await httpClient.GetAsync(_txtUrl);
-                    var txtValues = JsonConvert.DeserializeObject<IEnumerable<KeyValuePair<string, string>>>(await txtResponse.Content.ReadAsStringAsync());
-
-                    foreach(var txtValue in txtValues )
+                    if (!string.IsNullOrEmpty(_txtUrl))
                     {
-                        response.AnswerRecords.Add(new TextResourceRecord(question.Name, txtValue.Key, txtValue.Value, _ttl));
+                        var httpClient = new HttpClient();
+                        var txtResponse = await httpClient.GetAsync(_txtUrl);
+                        if (txtResponse.IsSuccessStatusCode)
+                        {
+                            var jsonString = await txtResponse.Content.ReadAsStringAsync();
+                            var txtValues = JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
+
+                            foreach (var txtValue in txtValues)
+                            {
+                                if (question.Name.ToString().ToLower().EndsWith(txtValue.Key))
+                                {
+                                    IList<CharacterString> characterStrings = new List<CharacterString>() { new CharacterString(txtValue.Value) };
+                                    response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
+                                }
+                            }
+                        }
                     }
                 }
 
-                var name = question.Name.ToString().Split('.');
+                var name = question.Name.ToString().ToLower().Split('.');
 
                 //check the base domain is the same.
                 if (name.Length >= _rootDomainComponents.Length && name.Skip(name.Length - _rootDomainComponents.Length).SequenceEqual(_rootDomainComponents))
@@ -96,7 +107,7 @@ namespace Dexih.Dns
                     var key = string.Join('.', name.Take(name.Length - _rootDomainComponents.Length));
                     if(_ipAddressRecords.TryGetValue(key, out var ipAddress))
                     {
-                        response.AnswerRecords.Add(new IPAddressResourceRecord(new Domain(string.Join('.', name)), ipAddress, _ttl));
+                        response.AnswerRecords.Add(new IPAddressResourceRecord(question.Name, ipAddress, _ttl));
                     }
 
                     // query the domain to determine ip.  Format 1-2-3-4.hash.dexih.com
