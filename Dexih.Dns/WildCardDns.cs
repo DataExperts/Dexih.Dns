@@ -76,7 +76,7 @@ namespace Dexih.Dns
             if (logErrors)
             {
                 // Log errors
-                server.Errored += (e) => Console.WriteLine(e.Message);
+                server.Errored += (e) => Console.Error.WriteLine("Error: " + e.Message);
             }
 
             await server.Listen();

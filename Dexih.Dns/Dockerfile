@@ -19,6 +19,9 @@ ENV ROOT_DOMAIN=dexih.com
 ENV DNS_IP_ADDRESS=60.224.193.14
 ENV DNS_EMAIL=gholland.dataexpertsgroup.com
 ENV DNS_TTL=300
+ENV LOG_REQUESTS=TRUE
+ENV LOG_ERRORS=TRUE
+ENV DNS_TXT_URL=https://dexih.dataexpertsgroup.com/api/Remote/GetTxtRecords
 
 EXPOSE 53:53
 

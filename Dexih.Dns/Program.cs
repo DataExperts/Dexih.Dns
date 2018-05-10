@@ -25,6 +25,8 @@ namespace Dexih.Dns
             var logRequests = bool.Parse(Environment.GetEnvironmentVariable("LOG_REQUESTS")??"true");
             var logErrors = bool.Parse(Environment.GetEnvironmentVariable("LOG_ERRORS") ?? "true");
 
+            Console.WriteLine("Starting the dns server...");
+            
             while(true)
             {
                 try
