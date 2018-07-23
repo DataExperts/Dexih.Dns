@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/Library/Caches/Rider2017.3/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_Dexih.Dns.408781481.00" t="ExcludeRecursive" />
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
-      <e p=".dockerignore" t="Include" />
-      <e p="bin" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Dexih.Dns.408781481.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Dexih.Dns" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Dexih.Dns.csproj" t="IncludeRecursive" />
+        <e p="DnsException.cs" t="Include" />
         <e p="Dockerfile" t="Include" />
+        <e p="env.sh" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.0" t="Include">
@@ -24,11 +24,78 @@
         <e p="WildCardDns.cs" t="Include" />
       </e>
       <e p="Dexih.Dns.sln" t="IncludeFlat" />
-      <e p="docker-compose.dcproj" t="IncludeRecursive" />
-      <e p="docker-compose.override.yml" t="Include" />
-      <e p="docker-compose.yml" t="Include" />
-      <e p="obj" t="ExcludeRecursive" />
+      <e p="DNS" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Client" t="Include">
+          <e p="ClientRequest.cs" t="Include" />
+          <e p="ClientResponse.cs" t="Include" />
+          <e p="DnsClient.cs" t="Include" />
+          <e p="RequestResolver" t="Include">
+            <e p="IRequestResolver.cs" t="Include" />
+            <e p="NullRequestResolver.cs" t="Include" />
+            <e p="TcpRequestResolver.cs" t="Include" />
+            <e p="UdpRequestResolver.cs" t="Include" />
+          </e>
+          <e p="ResponseException.cs" t="Include" />
+        </e>
+        <e p="DNS.csproj" t="IncludeRecursive" />
+        <e p="DNS.nuspec" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="DNS.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Properties" t="Include" />
+        <e p="Protocol" t="Include">
+          <e p="CharacterString.cs" t="Include" />
+          <e p="Domain.cs" t="Include" />
+          <e p="Header.cs" t="Include" />
+          <e p="IMessage.cs" t="Include" />
+          <e p="IMessageEntry.cs" t="Include" />
+          <e p="IRequest.cs" t="Include" />
+          <e p="IResponse.cs" t="Include" />
+          <e p="Marshalling" t="Include">
+            <e p="EndianAttribute.cs" t="Include" />
+            <e p="Endianness.cs" t="Include" />
+            <e p="Struct.cs" t="Include" />
+          </e>
+          <e p="OperationCode.cs" t="Include" />
+          <e p="Question.cs" t="Include" />
+          <e p="RecordClass.cs" t="Include" />
+          <e p="RecordType.cs" t="Include" />
+          <e p="Request.cs" t="Include" />
+          <e p="ResourceRecords" t="Include">
+            <e p="BaseResourceRecord.cs" t="Include" />
+            <e p="CanonicalNameResourceRecord.cs" t="Include" />
+            <e p="IPAddressResourceRecord.cs" t="Include" />
+            <e p="IResourceRecord.cs" t="Include" />
+            <e p="MailExchangeResourceRecord.cs" t="Include" />
+            <e p="NameServerResourceRecord.cs" t="Include" />
+            <e p="PointerResourceRecord.cs" t="Include" />
+            <e p="ResourceRecord.cs" t="Include" />
+            <e p="ResourceRecordFactory.cs" t="Include" />
+            <e p="StartOfAuthorityResourceRecord.cs" t="Include" />
+            <e p="TextResourceRecord.cs" t="Include" />
+          </e>
+          <e p="Response.cs" t="Include" />
+          <e p="ResponseCode.cs" t="Include" />
+          <e p="Utils" t="Include">
+            <e p="ByteExtensions.cs" t="Include" />
+            <e p="ByteStream.cs" t="Include" />
+            <e p="ObjectStringifier.cs" t="Include" />
+            <e p="TaskExtensions.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Server" t="Include">
+          <e p="DnsServer.cs" t="Include" />
+          <e p="MasterFile.cs" t="Include" />
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
+    <e p="$PROJECT_DIR$/../Test.Txt/Test.Txt.csproj" t="IncludeRecursive" />
   </component>
 </project>
