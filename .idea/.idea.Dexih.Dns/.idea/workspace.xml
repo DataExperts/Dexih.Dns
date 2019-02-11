@@ -2,95 +2,222 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85dc15ca-0819-42a1-a2a6-6165fbdfc1a1" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/start.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/stop.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/ClientRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/ClientResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/DnsClient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/RequestResolver/IRequestResolver.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/RequestResolver/NullRequestResolver.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/RequestResolver/TcpRequestResolver.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/RequestResolver/UdpRequestResolver.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Client/ResponseException.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/DNS.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/DNS.nuspec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/CharacterString.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Domain.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Header.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/IMessage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/IMessageEntry.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/IRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/IResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Marshalling/EndianAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Marshalling/Endianness.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Marshalling/Struct.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/OperationCode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Question.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/RecordClass.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/RecordType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Request.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/BaseResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/CanonicalNameResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/IPAddressResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/IResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/MailExchangeResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/NameServerResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/PointerResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/ResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/ResourceRecordFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/StartOfAuthorityResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResourceRecords/TextResourceRecord.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Response.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/ResponseCode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Utils/ByteExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Utils/ByteStream.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Utils/ObjectStringifier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Protocol/Utils/TaskExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Server/DnsServer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNS/Server/MasterFile.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/env.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Program.cs" pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state>
               <folding>
-                <marker date="1525851882866" expanded="true" signature="6:221" ph="..." />
-                <marker date="1525851882866" expanded="true" signature="242:1656" ph="{...}" />
-                <marker date="1525851882866" expanded="true" signature="262:1654" ph="{...}" />
-                <marker date="1525851882866" expanded="true" signature="308:1647" ph="{...}" />
-                <marker date="1525851882866" expanded="true" signature="1218:1637" ph="{...}" />
-                <marker date="1525851882866" expanded="true" signature="1252:1472" ph="{...}" />
-                <marker date="1525851882866" expanded="true" signature="1508:1622" ph="{...}" />
+                <marker date="1549928675916" expanded="true" signature="6:79" ph="..." />
+                <marker date="1549928675916" expanded="true" signature="100:1921" ph="{...}" />
+                <marker date="1549928675916" expanded="true" signature="127:1919" ph="{...}" />
+                <marker date="1549928675916" expanded="true" signature="179:1902" ph="{...}" />
+                <marker date="1549928675916" expanded="true" signature="1166:1892" ph="{...}" />
+                <marker date="1549928675916" expanded="true" signature="1200:1685" ph="{...}" />
+                <marker date="1549928675916" expanded="true" signature="1721:1877" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestResolver.cs" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/env.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/start.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/stop.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+            <state relative-caret-position="1137">
+              <caret line="140" column="13" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="13" />
               <folding>
-                <marker date="1525489770455" expanded="true" signature="6:306" ph="..." />
-                <marker date="1525489770455" expanded="true" signature="327:5448" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="381:5446" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="907:1962" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="1050:1250" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="1592:1781" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="2099:5440" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="2236:5400" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="2337:2581" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="2634:2896" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="2716:2878" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="2949:4112" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="3023:4094" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="3243:4072" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="3549:4046" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="3674:4016" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="4400:5386" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="4650:4807" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="5010:5368" ph="{...}" />
-                <marker date="1525489770455" expanded="true" signature="5128:5346" ph="{...}" />
+                <marker date="1549855597389" expanded="false" signature="6:306" ph="..." />
+                <marker date="1549855597389" expanded="true" signature="363:6193" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="417:6191" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="983:1942" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="1169:1369" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="1572:1761" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="2079:6185" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="2105:5904" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="2255:5856" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="2364:2652" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="2709:3027" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="2799:3005" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="3085:4450" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="3167:4428" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="3403:4402" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="3761:4372" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="3894:4338" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="4779:5838" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="5046:5215" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="5430:5816" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="5556:5790" ph="{...}" />
+                <marker date="1549855597389" expanded="true" signature="5936:6174" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WildCardDns.cs" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Properties/launchSettings.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/DnsException.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1525489443382" expanded="false" signature="6:66" ph="..." />
+                <marker date="1525489443382" expanded="true" signature="87:405" ph="{...}" />
+                <marker date="1525489443382" expanded="true" signature="130:403" ph="{...}" />
+                <marker date="1525489443382" expanded="true" signature="175:195" ph="{...}" />
+                <marker date="1525489443382" expanded="true" signature="255:275" ph="{...}" />
+                <marker date="1525489443382" expanded="true" signature="377:397" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1395">
-              <caret line="102" column="38" lean-forward="true" selection-start-line="102" selection-start-column="38" selection-end-line="102" selection-end-column="38" />
+            <state relative-caret-position="734">
+              <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
               <folding>
-                <marker date="1525852042324" expanded="false" signature="6:241" ph="..." />
-                <marker date="1525852042324" expanded="true" signature="262:5256" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="293:5254" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="686:2137" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="794:914" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="984:1091" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="1145:1394" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="1253:1380" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="1500:1613" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="1710:1880" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="2219:3006" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="2488:2785" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="2813:2960" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="3056:3386" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="3079:3376" ph="/* Console.WriteLine($&quot;Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Co ... */" />
-                <marker date="1525852042324" expanded="true" signature="3439:5246" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="3748:3860" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="3948:4102" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="4162:5021" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="4212:5007" ph="{...}" />
-                <marker date="1525852042324" expanded="true" signature="5085:5235" ph="{...}" />
+                <marker date="1549855597393" expanded="false" signature="6:241" ph="..." />
+                <marker date="1549855597393" expanded="true" signature="298:5624" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="329:5622" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="852:2346" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="1003:1123" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="1193:1300" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="1354:1603" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="1462:1589" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="1709:1822" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="1919:2089" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="2414:3251" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="2686:2981" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="3009:3205" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="3301:3631" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="3324:3621" ph="/* Console.WriteLine($&quot;Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Co ... */" />
+                <marker date="1549855597393" expanded="true" signature="3684:5614" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="3998:4115" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="4176:4450" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="4257:4436" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="4510:5384" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="4560:5370" ph="{...}" />
+                <marker date="1549855597393" expanded="true" signature="5448:5603" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="25" />
+              <folding>
+                <marker date="1541372660323" expanded="false" signature="6:26" ph="..." />
+                <marker date="1541372660323" expanded="true" signature="53:159" ph="{...}" />
+                <marker date="1541372660323" expanded="true" signature="82:157" ph="{...}" />
+                <marker date="1541372660323" expanded="true" signature="131:151" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -103,20 +230,27 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dexih.Dns/DnsException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/694D0A3C-A3C3-467B-BE14-643A5ED19F7D/90/04c9fccb/DnsServer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Dexih.Dns.Tests/UnitTest1.cs" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/start.sh" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/stop.sh" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/Program.cs" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-1141" />
+    <option name="x" value="-1222" />
     <option name="y" value="-2160" />
     <option name="width" value="3840" />
     <option name="height" value="2160" />
@@ -126,41 +260,61 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="FileSystemExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Dexih.Dns (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Dexih.Dns (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Dexih.Dns" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Test" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Dexih.Dns (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="DNS" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Test" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dexih.Dns.Tests" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Dexih.Dns (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="DNS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Server" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dependencies" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Properties" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Scripts" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
         </subPane>
-        <option name="show-file-system" value="false" />
-        <option name="show-all-items" value="false" />
+        <option name="show-all-files" value="false" />
       </pane>
+      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/dns" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -174,7 +328,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration name="Publish Linux" type="DotNetFolderPublish" factoryName="Publish to folder" temporary="true">
+      <riderPublish runtime="linux-x64" target_folder="$USER_HOME$/Downloads/dns" target_framework="netcoreapp2.1" uuid_high="2278622898051825860" uuid_low="-7717222960120071818" />
+      <method v="2" />
+    </configuration>
     <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Dexih.Dns/bin/Debug/netcoreapp2.0/Dexih.Dns.dll" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -186,6 +344,7 @@
       </envs>
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
@@ -193,7 +352,19 @@
       <option name="PROJECT_KIND" value="DotNetCore" />
       <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.0" />
       <browser url="http://localhost:5000" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Project.Default" />
+      <item itemvalue="Publish to folder.Publish Linux" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Publish to folder.Publish Linux" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -207,11 +378,15 @@
       <updated>1525405801212</updated>
       <workItem from="1525405802765" duration="68000" />
       <workItem from="1532252688800" duration="396000" />
+      <workItem from="1541371468303" duration="2551000" />
+      <workItem from="1548283965563" duration="3963000" />
+      <workItem from="1548300442769" duration="1450000" />
+      <workItem from="1549853565111" duration="5542000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="464000" />
+    <option name="totallyTimeSpent" value="13970000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -223,112 +398,195 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1141" y="-2160" width="3840" height="2160" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1222" y="-2160" width="3840" height="2160" extended-state="0" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Errors In Solution" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Unit Tests" order="7" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32985783" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="NuGet" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09636651" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32966506" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.29712918" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.3291866" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unit Tests" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="Build" order="13" weight="0.32966506" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs">
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="195">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Properties/launchSettings.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/DnsException.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
-            <marker date="1525851882866" expanded="true" signature="6:221" ph="..." />
-            <marker date="1525851882866" expanded="true" signature="242:1656" ph="{...}" />
-            <marker date="1525851882866" expanded="true" signature="262:1654" ph="{...}" />
-            <marker date="1525851882866" expanded="true" signature="308:1647" ph="{...}" />
-            <marker date="1525851882866" expanded="true" signature="1218:1637" ph="{...}" />
-            <marker date="1525851882866" expanded="true" signature="1252:1472" ph="{...}" />
-            <marker date="1525851882866" expanded="true" signature="1508:1622" ph="{...}" />
+            <marker date="1525489443382" expanded="false" signature="6:66" ph="..." />
+            <marker date="1525489443382" expanded="true" signature="87:405" ph="{...}" />
+            <marker date="1525489443382" expanded="true" signature="130:403" ph="{...}" />
+            <marker date="1525489443382" expanded="true" signature="175:195" ph="{...}" />
+            <marker date="1525489443382" expanded="true" signature="255:275" ph="{...}" />
+            <marker date="1525489443382" expanded="true" signature="377:397" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/694D0A3C-A3C3-467B-BE14-643A5ED19F7D/90/04c9fccb/DnsServer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+        <state relative-caret-position="1137">
+          <caret line="140" column="13" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="13" />
           <folding>
-            <marker date="1525489770455" expanded="true" signature="6:306" ph="..." />
-            <marker date="1525489770455" expanded="true" signature="327:5448" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="381:5446" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="907:1962" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="1050:1250" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="1592:1781" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="2099:5440" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="2236:5400" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="2337:2581" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="2634:2896" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="2716:2878" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="2949:4112" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="3023:4094" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="3243:4072" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="3549:4046" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="3674:4016" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="4400:5386" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="4650:4807" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="5010:5368" ph="{...}" />
-            <marker date="1525489770455" expanded="true" signature="5128:5346" ph="{...}" />
+            <marker date="1549855597389" expanded="false" signature="6:306" ph="..." />
+            <marker date="1549855597389" expanded="true" signature="363:6193" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="417:6191" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="983:1942" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="1169:1369" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="1572:1761" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="2079:6185" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="2105:5904" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="2255:5856" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="2364:2652" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="2709:3027" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="2799:3005" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="3085:4450" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="3167:4428" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="3403:4402" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="3761:4372" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="3894:4338" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="4779:5838" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="5046:5215" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="5430:5816" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="5556:5790" ph="{...}" />
+            <marker date="1549855597389" expanded="true" signature="5936:6174" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="102" column="38" lean-forward="true" selection-start-line="102" selection-start-column="38" selection-end-line="102" selection-end-column="38" />
+        <state relative-caret-position="734">
+          <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
           <folding>
-            <marker date="1525852042324" expanded="false" signature="6:241" ph="..." />
-            <marker date="1525852042324" expanded="true" signature="262:5256" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="293:5254" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="686:2137" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="794:914" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="984:1091" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="1145:1394" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="1253:1380" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="1500:1613" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="1710:1880" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="2219:3006" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="2488:2785" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="2813:2960" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="3056:3386" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="3079:3376" ph="/* Console.WriteLine($&quot;Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Co ... */" />
-            <marker date="1525852042324" expanded="true" signature="3439:5246" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="3748:3860" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="3948:4102" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="4162:5021" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="4212:5007" ph="{...}" />
-            <marker date="1525852042324" expanded="true" signature="5085:5235" ph="{...}" />
+            <marker date="1549855597393" expanded="false" signature="6:241" ph="..." />
+            <marker date="1549855597393" expanded="true" signature="298:5624" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="329:5622" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="852:2346" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="1003:1123" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="1193:1300" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="1354:1603" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="1462:1589" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="1709:1822" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="1919:2089" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="2414:3251" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="2686:2981" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="3009:3205" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="3301:3631" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="3324:3621" ph="/* Console.WriteLine($&quot;Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Co ... */" />
+            <marker date="1549855597393" expanded="true" signature="3684:5614" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="3998:4115" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="4176:4450" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="4257:4436" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="4510:5384" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="4560:5370" ph="{...}" />
+            <marker date="1549855597393" expanded="true" signature="5448:5603" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/env.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/stop.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1549928675916" expanded="true" signature="6:79" ph="..." />
+            <marker date="1549928675916" expanded="true" signature="100:1921" ph="{...}" />
+            <marker date="1549928675916" expanded="true" signature="127:1919" ph="{...}" />
+            <marker date="1549928675916" expanded="true" signature="179:1902" ph="{...}" />
+            <marker date="1549928675916" expanded="true" signature="1166:1892" ph="{...}" />
+            <marker date="1549928675916" expanded="true" signature="1200:1685" ph="{...}" />
+            <marker date="1549928675916" expanded="true" signature="1721:1877" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="25" />
+          <folding>
+            <marker date="1541372660323" expanded="false" signature="6:26" ph="..." />
+            <marker date="1541372660323" expanded="true" signature="53:159" ph="{...}" />
+            <marker date="1541372660323" expanded="true" signature="82:157" ph="{...}" />
+            <marker date="1541372660323" expanded="true" signature="131:151" ph="{...}" />
           </folding>
         </state>
       </provider>

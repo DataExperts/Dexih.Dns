@@ -8,21 +8,26 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Dexih.Dns
 {
     public class WildcardDns
     {
-        private string _rootIpAddress;
-        private string _rootDomain;
-        private string[] _dnsIpAddresses;
-        private string _email;
-        private long _timeStamp;
-        private int _ttl;
-        private string _txtUrl;
+        private readonly string _rootIpAddress;
+        private readonly string _rootDomain;
+        private readonly string[] _dnsIpAddresses;
+        private readonly string _email;
+        private readonly long _timeStamp;
+        private readonly int _ttl;
+        private readonly string _txtUrl;
+        private readonly ILogger _logger;
+        
 
-        public WildcardDns(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
+        public WildcardDns(ILogger logger, string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
+            _logger = logger;
+            
             if(string.IsNullOrEmpty(rootIpAddress) ||  !IPAddress.TryParse(rootIpAddress, out _))
             {
                 throw new DnsException($"The Root IP Address {rootIpAddress} is invalid.");
@@ -60,23 +65,23 @@ namespace Dexih.Dns
             _txtUrl = txtUrl;
         }
 
-        public async Task Listen(bool logRequests = true, bool logErrors = true)
+        public async Task Listen(bool logRequests, bool logErrors)
         {
             // All dns requests received will be handled by the request resolver
-            DnsServer server = new DnsServer(new RequestResolver(_rootIpAddress, _dnsIpAddresses, _rootDomain, _email, _timeStamp, _ttl, _txtUrl));
+            var server = new DnsServer(new RequestResolver(_logger, _rootIpAddress, _dnsIpAddresses, _rootDomain, _email, _timeStamp, _ttl, _txtUrl));
 
             if (logRequests)
             {
                 // Log every request
-                server.Requested += (request) => LogRequest(request);
+                server.Requested += (sender, e) => LogRequest(e.Request);
                 // On every successful request log the request and the response
-                server.Responded += (request, response) => LogResponse(response);
+                server.Responded += (sender, e) => LogResponse(e.Response);
             }
 
             if (logErrors)
             {
                 // Log errors
-                server.Errored += (e) => Console.Error.WriteLine("Error: " + e.Message);
+                server.Errored += (sender, e) => _logger.LogError(e.Exception, $"Dns Server encountered error: {e.Exception?.Message} ");
             }
 
             await server.Listen();
@@ -93,16 +98,19 @@ namespace Dexih.Dns
 
         public void LogResponse(IResponse response)
         {
-            Console.WriteLine($"Response: Id:{response.Id}, Query: {response.Questions.Count()}, Answers: {response.AnswerRecords.Count()}, Authority: {response.AuthorityRecords.Count()}, Additional: {response.AdditionalRecords.Count()}.");
+            _logger.LogInformation($"Response: Id:{response.Id}, Query: {response.Questions.Count()}, Answers: {response.AnswerRecords.Count()}, Authority: {response.AuthorityRecords.Count()}, Additional: {response.AdditionalRecords.Count()}.");
 
             foreach (var question in response.Questions)
             {
-                Console.WriteLine($"  Question: {question.Name}\t{question.Type}");
+                _logger.LogInformation($"  Question: {question.Name}\t{question.Type}");
             }
 
-            foreach (StartOfAuthorityResourceRecord auth in response.AuthorityRecords)
+            foreach (var auth in response.AuthorityRecords)
             {
-                Console.WriteLine($"  SOA: {auth.Name}\t{auth.Type}\t{auth.MasterDomainName}\t{auth.ResponsibleDomainName}");
+                if (auth is StartOfAuthorityResourceRecord record)
+                {
+                    _logger.LogInformation($"  SOA: {record.Name}\t{record.Type}\t{record.MasterDomainName}\t{record.ResponsibleDomainName}");
+                }
             }
 
             foreach (var record in response.AnswerRecords)
@@ -112,21 +120,21 @@ namespace Dexih.Dns
                     case RecordType.A:
                     case RecordType.AAAA:
                         IPAddressResourceRecord rec = (IPAddressResourceRecord) record;
-                        Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{rec.IPAddress}");
+                        _logger.LogInformation($"  Answer: {record.Name}\t{record.Type}\t{rec.IPAddress}");
                         break;
                     case RecordType.NS:
                         NameServerResourceRecord nsrec = (NameServerResourceRecord)record;
-                        Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{nsrec.NSDomainName}");
+                        _logger.LogInformation($"  Answer: {record.Name}\t{record.Type}\t{nsrec.NSDomainName}");
                         break;
                     default:
-                        Console.WriteLine($"  Answer: {record.Name}\t{record.Type}\t{Encoding.UTF8.GetString(record.Data)}");
+                        _logger.LogInformation($"  Answer: {record.Name}\t{record.Type}\t{Encoding.UTF8.GetString(record.Data)}");
                         break;
                 }
             }
 
             foreach (var record in response.AdditionalRecords)
             {
-                Console.WriteLine($"  Additional: {record.Name}\t{record.Type}\t{Encoding.UTF8.GetString(record.Data)}");
+                _logger.LogInformation($"  Additional: {record.Name}\t{record.Type}\t{Encoding.UTF8.GetString(record.Data)}");
             }
 
         }

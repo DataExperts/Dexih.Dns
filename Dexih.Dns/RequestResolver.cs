@@ -10,23 +10,25 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Dexih.Dns
 {
     public class RequestResolver : IRequestResolver
     {
-        private ConcurrentDictionary<string, IPAddress> _ipAddressRecords;
-        private Domain _rootDomain;
-        private string[] _rootDomainComponents;
-        private Domain[] _nsDomains;
-        private Domain _email;
-        private IPAddress[] _dnsIpAddresses;
-        private long _timeStamp;
-        private TimeSpan _ttl;
-        private string _txtUrl;
+        private readonly ConcurrentDictionary<string, IPAddress> _ipAddressRecords;
+        private readonly string[] _rootDomainComponents;
+        private readonly Domain[] _nsDomains;
+        private readonly Domain _email;
+        private readonly long _timeStamp;
+        private readonly TimeSpan _ttl;
+        private readonly string _txtUrl;
+        private readonly ILogger _logger;
 
-        public RequestResolver(string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
+        public RequestResolver(ILogger logger, string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
+            _logger = logger;
+            
             _ipAddressRecords = new ConcurrentDictionary<string, IPAddress>();
 
             if(!string.IsNullOrEmpty(rootIpAddress))
@@ -36,12 +38,9 @@ namespace Dexih.Dns
                 _ipAddressRecords.TryAdd("www", rootIp);
             }
             
-            _rootDomain = new Domain(rootDomain);
             _rootDomainComponents = rootDomain.ToLower().Split('.');
-
-            _dnsIpAddresses = dnsIpAddresses.Select(c => IPAddress.Parse(c)).ToArray();
-
             _nsDomains = new Domain[dnsIpAddresses.Length];
+
             for (var i = 0; i < dnsIpAddresses.Length; i++)
             {
                 _nsDomains[i] = new Domain($"ns{i+1}.{rootDomain}");
@@ -57,73 +56,90 @@ namespace Dexih.Dns
         // A request resolver that resolves all dns queries to localhost
         public async Task<IResponse> Resolve(IRequest request)
         {
-            IResponse response = Response.FromRequest(request);
-
-            foreach (Question question in response.Questions)
+            try
             {
-                if (question.Type == RecordType.SOA || question.Type == RecordType.NS)
-                {
-                    var record = new StartOfAuthorityResourceRecord(question.Name, _nsDomains[0], _email, _timeStamp, _ttl, _ttl, _ttl, _ttl, _ttl);
-                    response.AuthorityRecords.Add(record);
-                }
 
-                if (question.Type == RecordType.NS)
+                IResponse response = Response.FromRequest(request);
+
+                foreach (Question question in response.Questions)
                 {
-                    for (var i = 0; i < _nsDomains.Length; i++)
+                    if (question.Type == RecordType.SOA || question.Type == RecordType.NS)
                     {
-                        response.AnswerRecords.Add(new NameServerResourceRecord(_nsDomains[i], _nsDomains[i], _ttl));
+                        var record = new StartOfAuthorityResourceRecord(question.Name, _nsDomains[0], _email,
+                            _timeStamp, _ttl, _ttl, _ttl, _ttl, _ttl);
+                        response.AuthorityRecords.Add(record);
                     }
-                }
 
-                if(question.Type == RecordType.TXT)
-                {
-                    if (!string.IsNullOrEmpty(_txtUrl))
+                    if (question.Type == RecordType.NS)
                     {
-                        var httpClient = new HttpClient();
-                        var txtResponse = await httpClient.GetAsync(_txtUrl);
-                        if (txtResponse.IsSuccessStatusCode)
+                        for (var i = 0; i < _nsDomains.Length; i++)
                         {
-                            var jsonString = await txtResponse.Content.ReadAsStringAsync();
-                            var txtValues = JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
+                            response.AnswerRecords.Add(new NameServerResourceRecord(_nsDomains[i], _nsDomains[i],
+                                _ttl));
+                        }
+                    }
 
-                            foreach (var txtValue in txtValues)
+                    if (question.Type == RecordType.TXT)
+                    {
+                        if (!string.IsNullOrEmpty(_txtUrl))
+                        {
+                            var httpClient = new HttpClient();
+                            var txtResponse = await httpClient.GetAsync(_txtUrl);
+                            if (txtResponse.IsSuccessStatusCode)
                             {
-                                if (question.Name.ToString().ToLower().EndsWith(txtValue.Key))
+                                var jsonString = await txtResponse.Content.ReadAsStringAsync();
+                                var txtValues =
+                                    JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
+
+                                foreach (var txtValue in txtValues)
                                 {
-                                    IList<CharacterString> characterStrings = new List<CharacterString>() { new CharacterString(txtValue.Value) };
-                                    response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
+                                    if (question.Name.ToString().ToLower().EndsWith(txtValue.Key))
+                                    {
+                                        IList<CharacterString> characterStrings = new List<CharacterString>()
+                                            {new CharacterString(txtValue.Value)};
+                                        response.AnswerRecords.Add(new TextResourceRecord(question.Name,
+                                            characterStrings, _ttl));
+                                    }
                                 }
+                            }
+                        }
+                    }
+
+                    var name = question.Name.ToString().ToLower().Split('.');
+
+                    //check the base domain is the same.
+                    if (name.Length >= _rootDomainComponents.Length && name
+                            .Skip(name.Length - _rootDomainComponents.Length).SequenceEqual(_rootDomainComponents))
+                    {
+                        // match any static A records.
+                        var key = string.Join('.', name.Take(name.Length - _rootDomainComponents.Length));
+                        if (_ipAddressRecords.TryGetValue(key, out var ipAddress))
+                        {
+                            response.AnswerRecords.Add(new IPAddressResourceRecord(question.Name, ipAddress, _ttl));
+                        }
+
+                        // query the domain to determine ip.  Format 1-2-3-4.hash.dexih.com
+                        var domain = question.Name.ToString().Split(".");
+                        if (domain.Length == 4)
+                        {
+                            if (IPAddress.TryParse(domain[0].Replace('-', '.'), out var iPAddress))
+                            {
+                                var record = new IPAddressResourceRecord(question.Name, iPAddress, _ttl);
+                                response.AnswerRecords.Add(record);
                             }
                         }
                     }
                 }
 
-                var name = question.Name.ToString().ToLower().Split('.');
-
-                //check the base domain is the same.
-                if (name.Length >= _rootDomainComponents.Length && name.Skip(name.Length - _rootDomainComponents.Length).SequenceEqual(_rootDomainComponents))
-                {
-                    // match any static A records.
-                    var key = string.Join('.', name.Take(name.Length - _rootDomainComponents.Length));
-                    if(_ipAddressRecords.TryGetValue(key, out var ipAddress))
-                    {
-                        response.AnswerRecords.Add(new IPAddressResourceRecord(question.Name, ipAddress, _ttl));
-                    }
-
-                    // query the domain to determine ip.  Format 1-2-3-4.hash.dexih.com
-                    var domain = question.Name.ToString().Split(".");
-                    if (domain.Length == 4)
-                    {
-                        if (IPAddress.TryParse(domain[0].Replace('-', '.'), out var iPAddress))
-                        {
-                            var record = new IPAddressResourceRecord(question.Name, iPAddress, _ttl);
-                            response.AnswerRecords.Add(record);
-                        }
-                    }
-                }
+                return response;
+            }
+            catch (Exception e)
+            {
+                 _logger.LogError(e, $"The following error was encountered: {e.Message}.");
+                 var response = new Response {ResponseCode = ResponseCode.NoError};
+                 return response;
             }
 
-            return response;
         }
     }
 }
