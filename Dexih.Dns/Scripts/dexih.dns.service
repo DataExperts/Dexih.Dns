@@ -3,7 +3,7 @@ Description=Dexih Dns Service
 
 [Service]
 WorkingDirectory=/home/ubuntu/app
-ExecStart=/home/ubuntu/app/Dexih.Dns
+ExecStart=/usr/bin/dotnet /home/ubuntu/app/Dexih.Dns.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
@@ -11,7 +11,7 @@ SyslogIdentifier=dexih.dns
 User=root
 Environment=ROOT_IP_ADDRESS=13.59.37.106
 Environment=ROOT_DOMAIN=dexih.com
-Environment=DNS_IP_ADDRESS=18.188.63.154
+Environment=DNS_IP_ADDRESS=18.216.231.106
 Environment=DNS_EMAIL=gholland.dataexpertsgroup.com
 Environment=DNS_TTL=300
 Environment=LOG_REQUESTS=TRUE

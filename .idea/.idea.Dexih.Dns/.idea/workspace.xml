@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="85dc15ca-0819-42a1-a2a6-6165fbdfc1a1" name="Default" comment="implemented logging">
-      <change afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/contentModel.xml" afterDir="false" />
+    <list default="true" id="85dc15ca-0819-42a1-a2a6-6165fbdfc1a1" name="Default" comment="added some tests">
+      <change afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/dotnet_install.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="83" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="83" />
+            <state relative-caret-position="675">
+              <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
               <folding>
                 <marker date="1557274084809" expanded="true" signature="6:79" ph="..." />
                 <marker date="1557274084809" expanded="true" signature="100:1999" ph="{...}" />
@@ -37,18 +34,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/env.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="938">
+            <state relative-caret-position="1545">
               <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
               <folding>
                 <marker date="1557287512751" expanded="true" signature="6:385" ph="..." />
@@ -90,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="294">
               <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
             </state>
           </provider>
@@ -99,8 +87,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="90">
+              <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dotnet_install.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -124,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+            <state relative-caret-position="1095">
+              <caret line="83" column="81" selection-start-line="83" selection-start-column="81" selection-end-line="83" selection-end-column="81" />
               <folding>
                 <marker date="1549855597393" expanded="false" signature="6:277" ph="..." />
                 <marker date="1549855597393" expanded="true" signature="298:5624" ph="{...}" />
@@ -154,7 +151,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="840">
@@ -171,12 +168,22 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dexih.Dns/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>DNS_IP</find>
       <find>_dnsIpAddresses</find>
+      <find>Dns Server</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,6 +191,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dexih.Dns.Tests/obj/Debug/netcoreapp2.2/Dexih.Dns.Tests.Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/694D0A3C-A3C3-467B-BE14-643A5ED19F7D/3f/425041fb/Question.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns.Tests/obj/Debug/netcoreapp2.2/Dexih.Dns.Tests.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs" root0="FORCE_HIGHLIGHTING" />
@@ -200,11 +208,12 @@
         <option value="$PROJECT_DIR$/Dexih.Dns/start.sh" />
         <option value="$PROJECT_DIR$/Dexih.Dns/stop.sh" />
         <option value="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" />
-        <option value="$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" />
-        <option value="$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh" />
         <option value="$PROJECT_DIR$/Dexih.Dns/Program.cs" />
         <option value="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" />
         <option value="$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh" />
+        <option value="$PROJECT_DIR$/Dexih.Dns/Scripts/dotnet_install.sh" />
       </list>
     </option>
   </component>
@@ -242,6 +251,12 @@
               <item name="" type="784c90a0:SolutionExplorerRootNode" />
               <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dexih.Dns" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Scripts" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
@@ -329,7 +344,7 @@
       <workItem from="1557274313069" duration="516000" />
       <workItem from="1557275087482" duration="258000" />
       <workItem from="1557275380661" duration="2611000" />
-      <workItem from="1557286354975" duration="1792000" />
+      <workItem from="1557286354975" duration="3089000" />
     </task>
     <task id="LOCAL-00001" summary="implemented logging">
       <created>1549928981735</created>
@@ -338,11 +353,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549928981735</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added some tests">
+      <created>1557288577932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1557288577932</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22559000" />
+    <option name="totallyTimeSpent" value="23856000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -355,8 +377,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1680" y="-650" width="3840" height="2160" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.105055295" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.105055295" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -370,11 +393,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="NuGet" order="7" weight="0.3291866" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Unit Tests" order="9" visible="true" weight="0.32966506" />
+      <window_info anchor="bottom" id="Unit Tests" order="9" weight="0.32966506" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Build" order="13" weight="0.32966506" />
+      <window_info anchor="bottom" id="Build" order="13" visible="true" weight="0.32966506" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Performance Profiler" order="15" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -393,7 +416,8 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implemented logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented logging" />
+    <MESSAGE value="added some tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -464,13 +488,6 @@
     <entry file="file://$PROJECT_DIR$/Dexih.Dns/Properties/launchSettings.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/env.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -482,20 +499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -513,10 +516,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <marker date="1557288056334" expanded="false" signature="6:116" ph="..." />
+            <marker date="1557288056334" expanded="true" signature="143:2632" ph="{...}" />
+            <marker date="1557288056334" expanded="true" signature="172:2630" ph="{...}" />
+            <marker date="1557288056334" expanded="true" signature="302:1070" ph="{...}" />
+            <marker date="1557288056334" expanded="true" signature="1139:1921" ph="{...}" />
+            <marker date="1557288056334" expanded="true" signature="1976:2624" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding>
+            <marker date="1557274084809" expanded="true" signature="6:79" ph="..." />
+            <marker date="1557274084809" expanded="true" signature="100:1999" ph="{...}" />
+            <marker date="1557274084809" expanded="true" signature="127:1997" ph="{...}" />
+            <marker date="1557274084809" expanded="true" signature="179:1980" ph="{...}" />
+            <marker date="1557274084809" expanded="true" signature="1244:1970" ph="{...}" />
+            <marker date="1557274084809" expanded="true" signature="1278:1763" ph="{...}" />
+            <marker date="1557274084809" expanded="true" signature="1799:1955" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+        <state relative-caret-position="1095">
+          <caret line="83" column="81" selection-start-line="83" selection-start-column="81" selection-end-line="83" selection-end-column="81" />
           <folding>
             <marker date="1549855597393" expanded="false" signature="6:277" ph="..." />
             <marker date="1549855597393" expanded="true" signature="298:5624" ph="{...}" />
@@ -544,25 +585,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="83" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="83" />
-          <folding>
-            <marker date="1557274084809" expanded="true" signature="6:79" ph="..." />
-            <marker date="1557274084809" expanded="true" signature="100:1999" ph="{...}" />
-            <marker date="1557274084809" expanded="true" signature="127:1997" ph="{...}" />
-            <marker date="1557274084809" expanded="true" signature="179:1980" ph="{...}" />
-            <marker date="1557274084809" expanded="true" signature="1244:1970" ph="{...}" />
-            <marker date="1557274084809" expanded="true" signature="1278:1763" ph="{...}" />
-            <marker date="1557274084809" expanded="true" signature="1799:1955" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="938">
+        <state relative-caret-position="1545">
           <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
           <folding>
             <marker date="1557287512751" expanded="true" signature="6:385" ph="..." />
@@ -591,18 +616,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs">
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <marker date="1557288056334" expanded="false" signature="6:116" ph="..." />
-            <marker date="1557288056334" expanded="true" signature="143:2632" ph="{...}" />
-            <marker date="1557288056334" expanded="true" signature="172:2630" ph="{...}" />
-            <marker date="1557288056334" expanded="true" signature="302:1070" ph="{...}" />
-            <marker date="1557288056334" expanded="true" signature="1139:1921" ph="{...}" />
-            <marker date="1557288056334" expanded="true" signature="1976:2624" ph="{...}" />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/create_service.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dotnet_install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
         </state>
       </provider>
     </entry>
