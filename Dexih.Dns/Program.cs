@@ -25,7 +25,6 @@ namespace Dexih.Dns
             
             var logger = loggerFactory.CreateLogger("main");
             
-            
             while(true)
             {
                 try

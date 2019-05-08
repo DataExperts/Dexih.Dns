@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace Dexih.Dns
@@ -25,7 +26,7 @@ namespace Dexih.Dns
         private readonly string _txtUrl;
         private readonly ILogger _logger;
 
-        public RequestResolver(ILogger logger, string rootIpAddress, string[] dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
+        public RequestResolver(ILogger logger, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
             _logger = logger;
             
@@ -39,9 +40,9 @@ namespace Dexih.Dns
             }
             
             _rootDomainComponents = rootDomain.ToLower().Split('.');
-            _nsDomains = new Domain[dnsIpAddresses.Length];
+            _nsDomains = new Domain[dnsIpAddresses.Count];
 
-            for (var i = 0; i < dnsIpAddresses.Length; i++)
+            for (var i = 0; i < dnsIpAddresses.Count; i++)
             {
                 _nsDomains[i] = new Domain($"ns{i+1}.{rootDomain}");
                 _ipAddressRecords.TryAdd($"ns{i + 1}", IPAddress.Parse(dnsIpAddresses[i]));
@@ -74,8 +75,7 @@ namespace Dexih.Dns
                     {
                         for (var i = 0; i < _nsDomains.Length; i++)
                         {
-                            response.AnswerRecords.Add(new NameServerResourceRecord(_nsDomains[i], _nsDomains[i],
-                                _ttl));
+                            response.AnswerRecords.Add(new NameServerResourceRecord(question.Name, _nsDomains[i], _ttl));
                         }
                     }
 
