@@ -27,6 +27,7 @@
         <e p="Scripts" t="Include">
           <e p="create_service.sh" t="Include" />
           <e p="dexih.dns.service" t="Include" />
+          <e p="dotnet_install.sh" t="Include" />
           <e p="env.sh" t="Include" />
           <e p="start.sh" t="Include" />
           <e p="stop.sh" t="Include" />

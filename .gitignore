@@ -248,3 +248,5 @@ ModelManifest.xml
 .fake/
 
 .DS_Store
+.idea/
+.vscode/
