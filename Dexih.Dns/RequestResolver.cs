@@ -25,6 +25,7 @@ namespace Dexih.Dns
         private readonly TimeSpan _ttl;
         private readonly string _txtUrl;
         private readonly ILogger _logger;
+        private readonly HttpClient _httpClient;
 
         public RequestResolver(ILogger logger, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
@@ -52,6 +53,7 @@ namespace Dexih.Dns
             _timeStamp = timeStamp;
             _ttl = TimeSpan.FromSeconds(ttl);
             _txtUrl = txtUrl;
+            _httpClient = new HttpClient();
         }
 
         // A request resolver that resolves all dns queries to localhost
@@ -83,8 +85,7 @@ namespace Dexih.Dns
                     {
                         if (!string.IsNullOrEmpty(_txtUrl))
                         {
-                            var httpClient = new HttpClient();
-                            var txtResponse = await httpClient.GetAsync(_txtUrl);
+                            var txtResponse = await _httpClient.GetAsync(_txtUrl);
                             if (txtResponse.IsSuccessStatusCode)
                             {
                                 var jsonString = await txtResponse.Content.ReadAsStringAsync();
