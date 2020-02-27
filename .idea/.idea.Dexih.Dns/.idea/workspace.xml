@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="85dc15ca-0819-42a1-a2a6-6165fbdfc1a1" name="Default" comment="fixed scripts">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/contentModel.xml" afterDir="false" />
+    <list default="true" id="85dc15ca-0819-42a1-a2a6-6165fbdfc1a1" name="Default" comment="fixed httpclient connection">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Dexih.Dns/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/Dexih.Dns.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dexih.Dns/RequestResolver.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>DNS_IP</find>
-      <find>_dnsIpAddresses</find>
-      <find>Dns Server</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/Scripts/dexih.dns.service" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/694D0A3C-A3C3-467B-BE14-643A5ED19F7D/3f/425041fb/Question.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/WildCardDns.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dexih.Dns/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns/DnsException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dexih.Dns.Tests/WildCard.cs" root0="FORCE_HIGHLIGHTING" />
@@ -144,7 +138,7 @@
       <workItem from="1561076621013" duration="162000" />
       <workItem from="1563943793121" duration="154000" />
       <workItem from="1563945065607" duration="31000" />
-      <workItem from="1579661436223" duration="390000" />
+      <workItem from="1579661436223" duration="2372000" />
     </task>
     <task id="LOCAL-00001" summary="implemented logging">
       <created>1549928981735</created>
@@ -167,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557291211617</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed httpclient connection">
+      <created>1579661962904</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1579661962904</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,11 +176,33 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implemented logging" />
     <MESSAGE value="added some tests" />
     <MESSAGE value="fixed scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed scripts" />
+    <MESSAGE value="fixed httpclient connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed httpclient connection" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2960" y="686" key="Vcs.Push.Dialog.v2" timestamp="1579661964807">
+      <screen x="1680" y="0" width="3360" height="1890" />
+    </state>
+    <state x="2960" y="686" key="Vcs.Push.Dialog.v2/1680.0.3360.1890/0.0.1680.1050@1680.0.3360.1890" timestamp="1579661964807" />
+    <state x="3015" y="709" width="689" height="472" key="find.popup" timestamp="1579663287181">
+      <screen x="1680" y="0" width="3360" height="1890" />
+    </state>
+    <state x="3015" y="709" width="689" height="472" key="find.popup/1680.0.3360.1890/0.0.1680.1050@1680.0.3360.1890" timestamp="1579663287181" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
