@@ -1,0 +1,69 @@
+version: 1.0-rc.{build}
+# image: Visual Studio 2019
+image: Ubuntu
+configuration:
+- Debug
+- Release
+branches:
+  only:
+  - master
+  - release
+  - /dev-.*/
+
+skip_tags: true
+
+platform: Any CPU
+
+clone_depth: 1
+
+install:
+
+before_build:
+
+test_script:
+  - dotnet test .\Dexih.Dns.Tests
+    
+
+artifacts:
+- path: Dexih.Dns*.zip
+
+for:
+
+# The release branch publishes without the version suffix, making an official release.
+-
+  branches:
+    only:
+      - release
+
+  configuration: Release
+  build_script:
+  - dotnet restore Dexih.Dns.sln -v Minimal
+  - dotnet build Dexih.Dns.sln -c ${CONFIGURATION}
+
+  # - dotnet publish src/dexih.remote/dexih.remote.csproj -c ${CONFIGURATION} -p:Version=${APPVEYOR_BUILD_VERSION} -o ${APPVEYOR_BUILD_FOLDER}/dotnet
+  # - 7z a dexih.remote.${APPVEYOR_BUILD_VERSION}.zip ${APPVEYOR_BUILD_FOLDER}/dotnet/*
+
+  - dotnet publish Dexih.Dns/Dexih.Dns.csproj -c ${CONFIGURATION} -r linux-x64 -p:Version=${APPVEYOR_BUILD_VERSION} -o ${APPVEYOR_BUILD_FOLDER}/linux-x64
+  - 7z a Dexih.Dns.Linux_${APPVEYOR_BUILD_VERSION}.zip ${APPVEYOR_BUILD_FOLDER}/linux-64/*
+
+  deploy:
+  - provider: GitHub
+    release: Dexih.Dns-v${APPVEYOR_BUILD_VERSION}
+    description: 'Dexih Dns Server - ${CONFIGURATION} release, version - ${APPVEYOR_BUILD_VERSION}'
+    auth_token:
+      secure: lEaZ/om1UTRS6Xa947/5WxZVbBW6A+ZHmPu7aXRRDqkjX1+LYTfh9xL1CueonyuC
+    artifact: /.*\.zip/
+    prerelease: false,
+    tag: ${APPVEYOR_BUILD_VERSION}
+
+# fallback configuration, create debug artefact only.
+-
+  configuration: Debug
+  build_script:
+    - dotnet restore Dexih.Dns.sln -v Minimal
+    - dotnet build Dexih.Dns.sln -c ${CONFIGURATION}
+    - dotnet publish Dexih.Dns/Dexih.Dns.csproj -c ${CONFIGURATION} -r linux-x64 -p:Version=${APPVEYOR_BUILD_VERSION} -o ${APPVEYOR_BUILD_FOLDER}/dotnet
+    - 7z a Dexih.Dns.Linux_${APPVEYOR_BUILD_VERSION}.zip ${APPVEYOR_BUILD_FOLDER}/dotnet/*
+
+
+  
