@@ -21,7 +21,7 @@ install:
 before_build:
 
 test_script:
-  - dotnet test .\Dexih.Dns.Tests
+  - dotnet test ./Dexih.Dns.Tests
     
 
 artifacts:
