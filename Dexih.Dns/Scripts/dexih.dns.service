@@ -2,21 +2,21 @@
 Description=Dexih Dns Service
 
 [Service]
-WorkingDirectory=/home/ubuntu/app
-ExecStart=/usr/bin/dotnet /home/ubuntu/app/Dexih.Dns.dll
+WorkingDirectory=/home/gary/app
+ExecStart=/home/gary/app/Dexih.Dns
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
-SyslogIdentifier=dexih.dns
+SyslogIdentifier=dexih.dns.
 User=root
-Environment=ROOT_IP_ADDRESS=13.59.37.106
-Environment=ROOT_DOMAIN=dexih.com
-Environment=DNS_IP_ADDRESS=18.216.231.106
-Environment=DNS_EMAIL=gholland.dataexpertsgroup.com
-Environment=DNS_TTL=300
-Environment=LOG_REQUESTS=TRUE
-Environment=LOG_ERRORS=TRUE
-Environment=DNS_TXT_URL=http://dexih.com/api/Remote/GetTxtRecords
+Environment=AppSettings__RootIpAddress=13.59.37.106
+Environment=AppSettings__RootDomain=dexih.com
+Environment=AppSettings__DnsIpAddresses=18.188.63.154
+Environment=AppSettings__DnsEmail=gholland.dataexpertsgroup.com
+Environment=AppSettings__DnsTtl=300
+Environment=AppSettings__DnsTxtUrl=https://dexih.com/api/Remote/GetTxtRecords
+Environment=Logging__LogRequests=TRUE
+Environment=Logging__LogErrors=TRUE
 
 [Install]
 WantedBy=multi-user.target
