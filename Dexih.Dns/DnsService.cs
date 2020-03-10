@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,12 +20,14 @@ namespace Dexih.Dns
         private readonly ILogger<DnsService> _logger;
         private readonly Settings _settings;
         private readonly long _timeStamp;
+        private readonly IHttpClientFactory _clientFactory;
 
-        public DnsService(IConfiguration configuration, ILogger<DnsService> logger)
+        public DnsService(IConfiguration configuration, ILogger<DnsService> logger, IHttpClientFactory clientFactory)
         {
             _logger = logger;
             _settings = configuration.Get<Settings>();
             _timeStamp = long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
+            _clientFactory = clientFactory;
             
             if(string.IsNullOrEmpty(_settings.AppSettings.RootIpAddress) ||  !IPAddress.TryParse(_settings.AppSettings.RootIpAddress, out _))
             {
@@ -59,7 +62,7 @@ namespace Dexih.Dns
         {
             // All dns requests received will be handled by the request resolver
             var server = new DnsServer(new RequestResolver(
-                _logger, 
+                _logger, _clientFactory,
                 _settings.AppSettings.RootIpAddress, _settings.AppSettings.DnsIpAddresses, _settings.AppSettings.RootDomain, _settings.AppSettings.DnsEmail, _timeStamp, _settings.AppSettings.DnsTtl, _settings.AppSettings.DnsTxtUrl));
 
             if (_settings.Logging.LogRequests)

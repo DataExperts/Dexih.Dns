@@ -13,7 +13,7 @@ namespace Dexih.Dns.Tests
         [Fact]
         public void Test_Root_A_Request()
         {
-            var requestResolver = new RequestResolver(null, RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "abc");
+            var requestResolver = new RequestResolver(null, null, RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "abc");
             
             var question = new Question(new Domain("dexih.com"), RecordType.A, RecordClass.IN);
 
@@ -31,7 +31,7 @@ namespace Dexih.Dns.Tests
         [Fact]
         public void Test_Dynamic_A_Request()
         {
-            var requestResolver = new RequestResolver(null, RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "abc");
+            var requestResolver = new RequestResolver(null, null,RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "abc");
             
             var question = new Question(new Domain("127-0-0-1.abc.dexih.com"), RecordType.A, RecordClass.IN);
 
@@ -46,18 +46,18 @@ namespace Dexih.Dns.Tests
             Assert.Equal("127.0.0.1", record.IPAddress.ToString());
         }
 
-        [Fact]
-        public void Test_Txt_Request()
-        {
-            var requestResolver = new RequestResolver(null, RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "http://dexih.dataexpertsgroup.com/api/Remote/GetTxtRecords");
-            
-            var domain = new Domain("dexih.com");
-            
-            var question = new Question(domain, RecordType.TXT, RecordClass.IN);
-            var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>() {});
-            var resolve = requestResolver.Resolve(request).Result;
-            
-            Assert.Equal(1, resolve.AnswerRecords.Count);
-        }
+        // [Fact]
+        // public void Test_Txt_Request()
+        // {
+        //     var requestResolver = new RequestResolver(null, null,RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "http://dexih.dataexpertsgroup.com/api/Remote/GetTxtRecords");
+        //     
+        //     var domain = new Domain("dexih.com");
+        //     
+        //     var question = new Question(domain, RecordType.TXT, RecordClass.IN);
+        //     var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>() {});
+        //     var resolve = requestResolver.Resolve(request).Result;
+        //     
+        //     Assert.Equal(1, resolve.AnswerRecords.Count);
+        // }
     }
 }

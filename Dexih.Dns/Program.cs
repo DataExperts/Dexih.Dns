@@ -95,6 +95,7 @@ namespace Dexih.Dns
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddHttpClient();
                     services.AddHostedService<DnsService>();
                 })
                 .UseConsoleLifetime();

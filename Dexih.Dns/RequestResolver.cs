@@ -23,9 +23,9 @@ namespace Dexih.Dns
         private readonly TimeSpan _ttl;
         private readonly string _txtUrl;
         private readonly ILogger _logger;
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _clientFactory;
 
-        public RequestResolver(ILogger logger, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
+        public RequestResolver(ILogger logger, IHttpClientFactory clientFactory, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
             _logger = logger;
             
@@ -51,7 +51,7 @@ namespace Dexih.Dns
             _timeStamp = timeStamp;
             _ttl = TimeSpan.FromSeconds(ttl);
             _txtUrl = txtUrl;
-            _httpClient = new HttpClient();
+            _clientFactory = clientFactory;
         }
 
         // A request resolver that resolves all dns queries to localhost
@@ -83,7 +83,8 @@ namespace Dexih.Dns
                     {
                         if (!string.IsNullOrEmpty(_txtUrl))
                         {
-                            var txtResponse = await _httpClient.GetAsync(_txtUrl);
+                            var httpClient = _clientFactory.CreateClient();
+                            var txtResponse = await httpClient.GetAsync(_txtUrl);
                             if (txtResponse.IsSuccessStatusCode)
                             {
                                 var jsonString = await txtResponse.Content.ReadAsStringAsync();
@@ -134,7 +135,7 @@ namespace Dexih.Dns
             }
             catch (Exception e)
             {
-                 _logger.LogError(e, $"The following error was encountered: {e.Message}.");
+                 _logger?.LogError(e, $"The following error was encountered: {e.Message}.");
                  var response = new Response {ResponseCode = ResponseCode.NoError};
                  return response;
             }
