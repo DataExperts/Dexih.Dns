@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
@@ -24,6 +25,8 @@ namespace Dexih.Dns
         private readonly string _txtUrl;
         private readonly ILogger _logger;
         private readonly IHttpClientFactory _clientFactory;
+        
+        private RunOnce<List<KeyValuePair<string, string>>> _txtValues = new RunOnce<List<KeyValuePair<string, string>>>();
 
         public RequestResolver(ILogger logger, IHttpClientFactory clientFactory, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
@@ -83,14 +86,23 @@ namespace Dexih.Dns
                     {
                         if (!string.IsNullOrEmpty(_txtUrl))
                         {
-                            var httpClient = _clientFactory.CreateClient();
-                            var txtResponse = await httpClient.GetAsync(_txtUrl);
-                            if (txtResponse.IsSuccessStatusCode)
+                            var txtValues = await _txtValues.RunAsync(async () =>
                             {
-                                var jsonString = await txtResponse.Content.ReadAsStringAsync();
-                                var txtValues =
-                                    JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
+                                var httpClient = _clientFactory.CreateClient();
+                                var txtResponse = await httpClient.GetAsync(_txtUrl);
+                                if (txtResponse.IsSuccessStatusCode)
+                                {
+                                    var jsonString = await txtResponse.Content.ReadAsStringAsync();
+                                    return
+                                        JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
 
+                                }
+
+                                return null;
+                            });
+
+                            if (txtValues != null)
+                            {
                                 foreach (var txtValue in txtValues)
                                 {
                                     if (question.Name.ToString().ToLower().EndsWith(txtValue.Key))
