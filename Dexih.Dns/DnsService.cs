@@ -21,6 +21,7 @@ namespace Dexih.Dns
         private readonly Settings _settings;
         private readonly long _timeStamp;
         private readonly IHttpClientFactory _clientFactory;
+        private DnsServer _server;
 
         public DnsService(IConfiguration configuration, ILogger<DnsService> logger, IHttpClientFactory clientFactory)
         {
@@ -61,30 +62,31 @@ namespace Dexih.Dns
         public Task StartAsync(CancellationToken cancellationToken)
         {
             // All dns requests received will be handled by the request resolver
-            var server = new DnsServer(new RequestResolver(
+            _server = new DnsServer(new RequestResolver(
                 _logger, _clientFactory,
                 _settings.AppSettings.RootIpAddress, _settings.AppSettings.DnsIpAddresses, _settings.AppSettings.RootDomain, _settings.AppSettings.DnsEmail, _timeStamp, _settings.AppSettings.DnsTtl, _settings.AppSettings.DnsTxtUrl));
 
             if (_settings.Logging.LogRequests)
             {
                 // Log every request
-                server.Requested += (sender, e) => LogRequest(e.Request);
+                _server.Requested += (sender, e) => LogRequest(e.Request);
                 // On every successful request log the request and the response
-                server.Responded += (sender, e) => LogResponse(e.Response);
+                _server.Responded += (sender, e) => LogResponse(e.Response);
             }
 
             if (_settings.Logging.LogErrors)
             {
                 // Log errors
-                server.Errored += (sender, e) => _logger.LogError(e.Exception, $"Dns Server encountered error: {e.Exception?.Message} ");
+                _server.Errored += (sender, e) => _logger.LogError(e.Exception, $"Dns Server encountered error: {e.Exception?.Message} ");
             }
-
-            return server.Listen();
+            
+            return _server.Listen();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            _server.Dispose();
+            return Task.CompletedTask;
         }
         
         public void LogRequest(IRequest request)
