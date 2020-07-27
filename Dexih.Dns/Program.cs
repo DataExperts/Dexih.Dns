@@ -133,7 +133,7 @@ Welcome to Dexih - The Data Experts Integration Hub
             var runtimeVersion = Assembly.GetEntryAssembly()
                 .GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
-            Console.WriteLine($"Remote Agent - Version {runtimeVersion}");
+            Console.WriteLine($"Dexih Dns Agent - Version {runtimeVersion}");
             
         }
         

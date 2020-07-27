@@ -40,9 +40,6 @@ for:
   - dotnet restore Dexih.Dns.sln -v Minimal
   - dotnet build Dexih.Dns.sln -c ${CONFIGURATION}
 
-  # - dotnet publish src/dexih.remote/dexih.remote.csproj -c ${CONFIGURATION} -p:Version=${APPVEYOR_BUILD_VERSION} -o ${APPVEYOR_BUILD_FOLDER}/dotnet
-  # - 7z a dexih.remote.${APPVEYOR_BUILD_VERSION}.zip ${APPVEYOR_BUILD_FOLDER}/dotnet/*
-
   - dotnet publish Dexih.Dns/Dexih.Dns.csproj -c ${CONFIGURATION} -r linux-x64 -p:Version=${APPVEYOR_BUILD_VERSION} -o ${APPVEYOR_BUILD_FOLDER}/linux-x64 /p:PublishSingleFile=true
   - 7z a Dexih.Dns.Linux_${APPVEYOR_BUILD_VERSION}.zip ${APPVEYOR_BUILD_FOLDER}/linux-x64/*
 

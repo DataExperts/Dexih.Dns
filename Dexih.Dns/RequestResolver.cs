@@ -1,13 +1,13 @@
 ﻿using DNS.Client.RequestResolver;
 using DNS.Protocol;
 using DNS.Protocol.ResourceRecords;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -90,10 +90,12 @@ namespace Dexih.Dns
                                 var httpClient = _clientFactory.CreateClient();
                                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, _txtUrl);
                                 var txtResponse = await httpClient.SendAsync(requestMessage, cancellationToken);
+                                
                                 if (txtResponse.IsSuccessStatusCode)
                                 {
-                                    var jsonString = await txtResponse.Content.ReadAsStringAsync();
-                                    return JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
+                                    // var jsonString = await txtResponse.Content.ReadAsStringAsync();
+                                    // return System.Text.Json.JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(jsonString);
+                                    return await JsonSerializer.DeserializeAsync<List<KeyValuePair<string, string>>>(await txtResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
                                 }
                                 
                                 return null;
