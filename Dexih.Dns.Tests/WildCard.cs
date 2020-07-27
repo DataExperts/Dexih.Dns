@@ -68,7 +68,7 @@ namespace Dexih.Dns.Tests
             });
 
             // delay to let the original task finish, and then run again
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             var value = await runOnce.RunAsync(async () =>
             {
                 count++;
