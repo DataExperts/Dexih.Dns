@@ -26,7 +26,7 @@ namespace Dexih.Dns
         private readonly ILogger _logger;
         private readonly IHttpClientFactory _clientFactory;
         
-        private RunOnce<List<KeyValuePair<string, string>>> _txtValues = new RunOnce<List<KeyValuePair<string, string>>>();
+        private readonly RunOnce<List<KeyValuePair<string, string>>> _txtValues = new RunOnce<List<KeyValuePair<string, string>>>();
 
         public RequestResolver(ILogger logger, IHttpClientFactory clientFactory, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
@@ -58,11 +58,10 @@ namespace Dexih.Dns
         }
 
         // A request resolver that resolves all dns queries to localhost
-        public async Task<IResponse> Resolve(IRequest request)
+        public async Task<IResponse> Resolve(IRequest request, CancellationToken cancellationToken = default)
         {
             try
             {
-
                 IResponse response = Response.FromRequest(request);
 
                 foreach (Question question in response.Questions)
@@ -72,13 +71,13 @@ namespace Dexih.Dns
                         var record = new StartOfAuthorityResourceRecord(question.Name, _nsDomains[0], _email,
                             _timeStamp, _ttl, _ttl, _ttl, _ttl, _ttl);
                         response.AuthorityRecords.Add(record);
-                    }
-
-                    if (question.Type == RecordType.NS)
-                    {
-                        for (var i = 0; i < _nsDomains.Length; i++)
+                        
+                        if (question.Type == RecordType.NS)
                         {
-                            response.AnswerRecords.Add(new NameServerResourceRecord(question.Name, _nsDomains[i], _ttl));
+                            foreach (var t in _nsDomains)
+                            {
+                                response.AnswerRecords.Add(new NameServerResourceRecord(question.Name, t, _ttl));
+                            }
                         }
                     }
 
@@ -89,26 +88,25 @@ namespace Dexih.Dns
                             var txtValues = await _txtValues.RunAsync(async () =>
                             {
                                 var httpClient = _clientFactory.CreateClient();
-                                var txtResponse = await httpClient.GetAsync(_txtUrl);
+                                var requestMessage = new HttpRequestMessage(HttpMethod.Get, _txtUrl);
+                                var txtResponse = await httpClient.SendAsync(requestMessage, cancellationToken);
                                 if (txtResponse.IsSuccessStatusCode)
                                 {
                                     var jsonString = await txtResponse.Content.ReadAsStringAsync();
-                                    return
-                                        JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
-
+                                    return JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(jsonString);
                                 }
-
+                                
                                 return null;
                             });
 
                             if (txtValues != null)
                             {
-                                foreach (var txtValue in txtValues)
+                                foreach (var (key, value) in txtValues)
                                 {
-                                    if (question.Name.ToString().ToLower().EndsWith(txtValue.Key))
+                                    if (question.Name.ToString().ToLower().EndsWith(key))
                                     {
                                         IList<CharacterString> characterStrings = new List<CharacterString>()
-                                            {new CharacterString(txtValue.Value)};
+                                            {new CharacterString(value)};
                                         response.AnswerRecords.Add(new TextResourceRecord(question.Name,
                                             characterStrings, _ttl));
                                     }
@@ -153,5 +151,6 @@ namespace Dexih.Dns
             }
 
         }
+        
     }
 }

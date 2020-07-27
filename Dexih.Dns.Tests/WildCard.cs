@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DNS.Protocol;
 using DNS.Protocol.ResourceRecords;
 using Xunit;
@@ -44,6 +45,39 @@ namespace Dexih.Dns.Tests
 
             var record = (IPAddressResourceRecord) resolve.AnswerRecords[0];
             Assert.Equal("127.0.0.1", record.IPAddress.ToString());
+        }
+
+        [Fact]
+        public async void Test_RunOne()
+        {
+            var runOnce = new RunOnce<int>();
+
+            var count = 0;
+            
+            Parallel.For(0, 10, i =>
+            {
+                // should only increment the first time, and cache subsequent requests
+                var value = runOnce.RunAsync(async () =>
+                {
+                    count++;
+                    await Task.Delay(1000);
+                    return count;
+                });
+                
+                Assert.Equal(1, count);
+            });
+
+            // delay to let the original task finish, and then run again
+            await Task.Delay(1000);
+            var value = await runOnce.RunAsync(async () =>
+            {
+                count++;
+                await Task.Delay(1000);
+                return count;
+            });
+            
+            Assert.Equal(2, value);
+            
         }
 
         // [Fact]
