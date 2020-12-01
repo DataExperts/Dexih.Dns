@@ -21,6 +21,9 @@ namespace Dexih.Dns
         private readonly long _timeStamp;
         private readonly IHttpClientFactory _clientFactory;
         private DnsServer _server;
+        public IPEndPoint _IpEndPoint;
+        
+        private Task _listenTask;
 
         public DnsService(IConfiguration configuration, ILogger<DnsService> logger, IHttpClientFactory clientFactory)
         {
@@ -28,6 +31,12 @@ namespace Dexih.Dns
             _settings = configuration.Get<Settings>();
             _timeStamp = long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
             _clientFactory = clientFactory;
+
+            var listenIpAddress = string.IsNullOrWhiteSpace(_settings.AppSettings.ListenIpAddress)
+                ? IPAddress.Any
+                : IPAddress.Parse(_settings.AppSettings.ListenIpAddress);
+
+            _IpEndPoint = new IPEndPoint(listenIpAddress, _settings.AppSettings.ListenPort);
             
             if(string.IsNullOrEmpty(_settings.AppSettings.RootIpAddress) ||  !IPAddress.TryParse(_settings.AppSettings.RootIpAddress, out _))
             {
@@ -79,13 +88,15 @@ namespace Dexih.Dns
                 _server.Errored += (sender, e) => _logger.LogError(e.Exception, $"Dns Server encountered error: {e.Exception?.Message} ");
             }
             
-            return _server.Listen();
+            _listenTask = _server.Listen(_IpEndPoint);
+            return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            _logger.LogInformation(("Dns server is stopping."));
             _server.Dispose();
-            return Task.CompletedTask;
+            return _listenTask;
         }
         
         public void LogRequest(IRequest request)

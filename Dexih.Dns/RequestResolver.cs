@@ -81,6 +81,7 @@ namespace Dexih.Dns
 
                     if (question.Type == RecordType.TXT)
                     {
+                       
                         if (!string.IsNullOrEmpty(_txtUrl))
                         {
                             var httpClient = _clientFactory.CreateClient();

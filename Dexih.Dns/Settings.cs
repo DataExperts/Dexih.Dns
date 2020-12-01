@@ -16,6 +16,9 @@ namespace Dexih.Dns
         public string[] DnsIpAddresses { get; set; }
         public string DnsEmail { get; set; }
         public int DnsTtl { get; set; } = 300;
+        
+        public string ListenIpAddress { get; set; }
+        public int ListenPort { get; set; }
     }
     
     public class LoggingSection
