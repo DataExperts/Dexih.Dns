@@ -6,8 +6,8 @@ namespace Dexih.Dns
 {
     public class RunOnce<T>
     {
-        private  T _value = default;
-        private bool _running = false;
+        private  T _value;
+        private bool _running;
         private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(0);
         private readonly object _lock = 1;
 

@@ -22,7 +22,7 @@ namespace Dexih.Dns
             Upgrade = 20
         }
 
-        public static int Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
             var mutex = new Mutex(true, "dexih.dns", out var createdNew);
     
@@ -32,7 +32,7 @@ namespace Dexih.Dns
                 return (int) EExitCode.Terminated;
             }
             
-            var returnValue = StartAsync(args).Result;
+            var returnValue = await StartAsync(args);
             
             mutex.ReleaseMutex();
             
@@ -102,20 +102,12 @@ namespace Dexih.Dns
                 })
                 .UseConsoleLifetime();
 
-            var host = hostBuilder.Build();
-            
-            try
+            using (var host = hostBuilder.Build())
             {
                 await host.RunAsync();
             }
-            catch (OperationCanceledException)
-            {
-                
-            }
             
-            host.Dispose();
-            
-            return (int)EExitCode.Success;;
+            return (int)EExitCode.Success;
         }
         
         private static void Welcome()

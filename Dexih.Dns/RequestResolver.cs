@@ -25,8 +25,6 @@ namespace Dexih.Dns
         private readonly string _txtUrl;
         private readonly ILogger _logger;
         private readonly IHttpClientFactory _clientFactory;
-        
-        private readonly RunOnce<List<KeyValuePair<string, string>>> _txtValues = new RunOnce<List<KeyValuePair<string, string>>>();
 
         public RequestResolver(ILogger logger, IHttpClientFactory clientFactory, string rootIpAddress, IReadOnlyList<string> dnsIpAddresses, string rootDomain, string email, long timeStamp, int ttl, string txtUrl)
         {
@@ -102,11 +100,10 @@ namespace Dexih.Dns
                                 {
                                     // if (question.Name.ToString().ToLower().EndsWith(key))
                                     // {
-                                        IList<CharacterString> characterStrings = new List<CharacterString>()
-                                            {new CharacterString(value)};
-                                        response.AnswerRecords.Add(new TextResourceRecord(question.Name,
-                                            characterStrings, _ttl));
+                                        // IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
+                                        // response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
                                     // }
+                                    response.AnswerRecords.Add(new TextResourceRecord(question.Name, key, value, _ttl));
                                 }
                             }
                         }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -58,7 +57,7 @@ namespace Dexih.Dns.Tests
             Parallel.For(0, 10, i =>
             {
                 // should only increment the first time, and cache subsequent requests
-                var value = runOnce.RunAsync(async () =>
+                runOnce.RunAsync(async () =>
                 {
                     count++;
                     await Task.Delay(1000);
@@ -89,7 +88,7 @@ namespace Dexih.Dns.Tests
             var domain = new Domain("dexih.com");
             
             var question = new Question(domain, RecordType.TXT, RecordClass.IN);
-            var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>() {});
+            var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>());
             var resolve = await requestResolver.Resolve(request);
             
             Assert.Equal(1, resolve.AnswerRecords.Count);
