@@ -17,38 +17,34 @@ namespace Dexih.Dns
     public class DnsService: IHostedService
     {
         private readonly ILogger<DnsService> _logger;
-        private readonly Settings _settings;
-        private readonly long _timeStamp;
-        private readonly IHttpClientFactory _clientFactory;
-        private DnsServer _server;
-        public IPEndPoint _IpEndPoint;
+        private readonly DnsServer _server;
+        private readonly IPEndPoint _ipEndPoint;
         
         private Task _listenTask;
 
         public DnsService(IConfiguration configuration, ILogger<DnsService> logger, IHttpClientFactory clientFactory)
         {
             _logger = logger;
-            _settings = configuration.Get<Settings>();
-            _timeStamp = long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
-            _clientFactory = clientFactory;
+            var settings = configuration.Get<Settings>();
+            var timeStamp = long.Parse(DateTime.Now.ToString("yyyymmdd") + "00");
 
-            var listenIpAddress = string.IsNullOrWhiteSpace(_settings.AppSettings.ListenIpAddress)
+            var listenIpAddress = string.IsNullOrWhiteSpace(settings.AppSettings.ListenIpAddress)
                 ? IPAddress.Any
-                : IPAddress.Parse(_settings.AppSettings.ListenIpAddress);
+                : IPAddress.Parse(settings.AppSettings.ListenIpAddress);
 
-            _IpEndPoint = new IPEndPoint(listenIpAddress, _settings.AppSettings.ListenPort);
+            _ipEndPoint = new IPEndPoint(listenIpAddress, settings.AppSettings.ListenPort);
             
-            if(string.IsNullOrEmpty(_settings.AppSettings.RootIpAddress) ||  !IPAddress.TryParse(_settings.AppSettings.RootIpAddress, out _))
+            if(string.IsNullOrEmpty(settings.AppSettings.RootIpAddress) ||  !IPAddress.TryParse(settings.AppSettings.RootIpAddress, out _))
             {
-                throw new DnsException($"The Root IP Address {_settings.AppSettings.RootIpAddress} is invalid.");
+                throw new DnsException($"The Root IP Address {settings.AppSettings.RootIpAddress} is invalid.");
             }
 
-            if(_settings.AppSettings.DnsIpAddresses == null || _settings.AppSettings.DnsIpAddresses.Length == 0)
+            if(settings.AppSettings.DnsIpAddresses == null || settings.AppSettings.DnsIpAddresses.Length == 0)
             {
                 throw new DnsException($"There are no DNS IP Addresses set.");
             }
 
-            foreach(var ipAddress in _settings.AppSettings.DnsIpAddresses)
+            foreach(var ipAddress in settings.AppSettings.DnsIpAddresses)
             {
                 if (string.IsNullOrEmpty(ipAddress) || !IPAddress.TryParse(ipAddress, out _))
                 {
@@ -56,25 +52,22 @@ namespace Dexih.Dns
                 }
             }
 
-            if(string.IsNullOrEmpty(_settings.AppSettings.RootDomain) || Uri.CheckHostName(_settings.AppSettings.RootDomain) != UriHostNameType.Dns)
+            if(string.IsNullOrEmpty(settings.AppSettings.RootDomain) || Uri.CheckHostName(settings.AppSettings.RootDomain) != UriHostNameType.Dns)
             {
-                throw new DnsException($"The Root Domain {_settings.AppSettings.RootIpAddress} is invalid.");
+                throw new DnsException($"The Root Domain {settings.AppSettings.RootIpAddress} is invalid.");
             }
 
-            if (string.IsNullOrEmpty(_settings.AppSettings.DnsEmail) || Uri.CheckHostName(_settings.AppSettings.DnsEmail) != UriHostNameType.Dns)
+            if (string.IsNullOrEmpty(settings.AppSettings.DnsEmail) || Uri.CheckHostName(settings.AppSettings.DnsEmail) != UriHostNameType.Dns)
             {
-                throw new DnsException($"The Email {_settings.AppSettings.DnsEmail} is invalid.  Use the format username.gmail.com (rather than username@gmail.com)");
+                throw new DnsException($"The Email {settings.AppSettings.DnsEmail} is invalid.  Use the format username.gmail.com (rather than username@gmail.com)");
             }
-        }
-        
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
+            
             // All dns requests received will be handled by the request resolver
             _server = new DnsServer(new RequestResolver(
-                _logger, _clientFactory,
-                _settings.AppSettings.RootIpAddress, _settings.AppSettings.DnsIpAddresses, _settings.AppSettings.RootDomain, _settings.AppSettings.DnsEmail, _timeStamp, _settings.AppSettings.DnsTtl, _settings.AppSettings.DnsTxtUrl));
+                _logger, clientFactory,
+                settings.AppSettings.RootIpAddress, settings.AppSettings.DnsIpAddresses, settings.AppSettings.RootDomain, settings.AppSettings.DnsEmail, timeStamp, settings.AppSettings.DnsTtl, settings.AppSettings.DnsTxtUrl));
 
-            if (_settings.Logging.LogRequests)
+            if (settings.Logging.LogRequests)
             {
                 // Log every request
                 _server.Requested += (sender, e) => LogRequest(e.Request);
@@ -82,13 +75,16 @@ namespace Dexih.Dns
                 _server.Responded += (sender, e) => LogResponse(e.Response);
             }
 
-            if (_settings.Logging.LogErrors)
+            if (settings.Logging.LogErrors)
             {
                 // Log errors
                 _server.Errored += (sender, e) => _logger.LogError(e.Exception, $"Dns Server encountered error: {e.Exception?.Message} ");
             }
-            
-            _listenTask = _server.Listen(_IpEndPoint);
+        }
+        
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            _listenTask = _server.Listen(_ipEndPoint);
             return Task.CompletedTask;
         }
 
@@ -98,8 +94,8 @@ namespace Dexih.Dns
             _server.Dispose();
             return _listenTask;
         }
-        
-        public void LogRequest(IRequest request)
+
+        private void LogRequest(IRequest request)
         {
             _logger.LogDebug($"Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Count()}.");
             foreach(var question in request.Questions)
@@ -108,7 +104,7 @@ namespace Dexih.Dns
             }
         }
 
-        public void LogResponse(IResponse response)
+        private void LogResponse(IResponse response)
         {
             _logger.LogInformation($"Response: Id:{response.Id}, Query: {response.Questions.Count()}, Answers: {response.AnswerRecords.Count()}, Authority: {response.AuthorityRecords.Count()}, Additional: {response.AdditionalRecords.Count()}.");
 

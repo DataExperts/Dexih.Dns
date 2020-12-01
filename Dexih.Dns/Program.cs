@@ -125,7 +125,8 @@ Welcome to Dexih - The Data Experts Integration Hub
             
             // introduction message, with file version
             var runtimeVersion = Assembly.GetEntryAssembly()
-                .GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                ?.InformationalVersion;
 
             Console.WriteLine($"Dexih Dns Agent - Version {runtimeVersion}");
             
