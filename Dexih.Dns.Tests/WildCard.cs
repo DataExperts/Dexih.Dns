@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DNS.Protocol;
 using DNS.Protocol.ResourceRecords;
@@ -80,18 +81,23 @@ namespace Dexih.Dns.Tests
             
         }
 
-        // [Fact]
-        // public void Test_Txt_Request()
-        // {
-        //     var requestResolver = new RequestResolver(null, null,RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "http://dexih.dataexpertsgroup.com/api/Remote/GetTxtRecords");
-        //     
-        //     var domain = new Domain("dexih.com");
-        //     
-        //     var question = new Question(domain, RecordType.TXT, RecordClass.IN);
-        //     var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>() {});
-        //     var resolve = requestResolver.Resolve(request).Result;
-        //     
-        //     Assert.Equal(1, resolve.AnswerRecords.Count);
-        // }
+        [Fact]
+        public async void Test_Txt_Request()
+        {
+            var requestResolver = new RequestResolver(null, new DefaultHttpClientFactory(),RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "https://dexih.com/api/Remote/GetTxtRecords");
+            
+            var domain = new Domain("dexih.com");
+            
+            var question = new Question(domain, RecordType.TXT, RecordClass.IN);
+            var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>() {});
+            var resolve = await requestResolver.Resolve(request);
+            
+            Assert.Equal(1, resolve.AnswerRecords.Count);
+        }
+    }
+    
+    public sealed class DefaultHttpClientFactory : IHttpClientFactory
+    {
+        public HttpClient CreateClient(string name) => new HttpClient();
     }
 }

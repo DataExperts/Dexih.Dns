@@ -91,11 +91,11 @@ namespace Dexih.Dns
         
         public void LogRequest(IRequest request)
         {
-            //Console.WriteLine($"Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Count()}.");
-            //foreach(var question in request.Questions)
-            //{
-            //    Console.WriteLine($"  Question: {question.Name}\t{question.Type}");
-            //}
+            _logger.LogDebug($"Request: Id:{request.Id}, Operation: {request.OperationCode}, Query: {request.Questions.Count()}.");
+            foreach(var question in request.Questions)
+            {
+                _logger.LogDebug($"  Question: {question.Name}\t{question.Type}");
+            }
         }
 
         public void LogResponse(IResponse response)

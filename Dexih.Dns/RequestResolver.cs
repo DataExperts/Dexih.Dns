@@ -85,33 +85,28 @@ namespace Dexih.Dns
                     {
                         if (!string.IsNullOrEmpty(_txtUrl))
                         {
-                            var txtValues = await _txtValues.RunAsync(async () =>
+                            var httpClient = _clientFactory.CreateClient();
+                            // var requestMessage = new HttpRequestMessage(HttpMethod.Get, _txtUrl);
+                            var txtResponse = await httpClient.GetAsync(_txtUrl, cancellationToken);
+                            List<KeyValuePair<string, string>> txtValues = null;
+                            if (txtResponse.IsSuccessStatusCode)
                             {
-                                var httpClient = _clientFactory.CreateClient();
-                                var requestMessage = new HttpRequestMessage(HttpMethod.Get, _txtUrl);
-                                var txtResponse = await httpClient.SendAsync(requestMessage, cancellationToken);
-                                
-                                if (txtResponse.IsSuccessStatusCode)
-                                {
-                                    // var jsonString = await txtResponse.Content.ReadAsStringAsync();
-                                    // return System.Text.Json.JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(jsonString);
-                                    return await JsonSerializer.DeserializeAsync<List<KeyValuePair<string, string>>>(await txtResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
-                                }
-                                
-                                return null;
-                            });
+                                // var jsonString = await txtResponse.Content.ReadAsStringAsync();
+                                // return System.Text.Json.JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(jsonString);
+                                txtValues = await JsonSerializer.DeserializeAsync<List<KeyValuePair<string, string>>>(await txtResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
+                            }
 
                             if (txtValues != null)
                             {
                                 foreach (var (key, value) in txtValues)
                                 {
-                                    if (question.Name.ToString().ToLower().EndsWith(key))
-                                    {
+                                    // if (question.Name.ToString().ToLower().EndsWith(key))
+                                    // {
                                         IList<CharacterString> characterStrings = new List<CharacterString>()
                                             {new CharacterString(value)};
                                         response.AnswerRecords.Add(new TextResourceRecord(question.Name,
                                             characterStrings, _ttl));
-                                    }
+                                    // }
                                 }
                             }
                         }
