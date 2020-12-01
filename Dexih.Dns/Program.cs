@@ -82,12 +82,14 @@ namespace Dexih.Dns
                     configHost.SetBasePath(configDirectory);
                     configHost.AddJsonFile(settingsFile, optional: true);
                     configHost.AddEnvironmentVariables();
+
                 })
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
                     // add user secrets when development mode
-                    if (hostContext.HostingEnvironment.IsDevelopment())
+                    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
                     {
+                        logger.LogInformation("Running in development mode.");
                         configApp.AddUserSecrets<Program>();
                     }
 
