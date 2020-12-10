@@ -22,7 +22,7 @@ namespace Dexih.Dns
             Upgrade = 20
         }
 
-        public static int Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
             var mutex = new Mutex(true, "dexih.dns", out var createdNew);
     
@@ -32,7 +32,7 @@ namespace Dexih.Dns
                 return (int) EExitCode.Terminated;
             }
             
-            var returnValue = StartAsync(args).Result;
+            var returnValue = await StartAsync(args);
             
             mutex.ReleaseMutex();
             
@@ -102,20 +102,12 @@ namespace Dexih.Dns
                 })
                 .UseConsoleLifetime();
 
-            var host = hostBuilder.Build();
-            
-            try
+            using (var host = hostBuilder.Build())
             {
                 await host.RunAsync();
             }
-            catch (OperationCanceledException)
-            {
-                
-            }
             
-            host.Dispose();
-            
-            return (int)EExitCode.Success;;
+            return (int)EExitCode.Success;
         }
         
         private static void Welcome()
@@ -133,7 +125,8 @@ Welcome to Dexih - The Data Experts Integration Hub
             
             // introduction message, with file version
             var runtimeVersion = Assembly.GetEntryAssembly()
-                .GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                ?.InformationalVersion;
 
             Console.WriteLine($"Dexih Dns Agent - Version {runtimeVersion}");
             

@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DNS.Protocol;
 using DNS.Protocol.ResourceRecords;
@@ -47,51 +47,56 @@ namespace Dexih.Dns.Tests
             Assert.Equal("127.0.0.1", record.IPAddress.ToString());
         }
 
-        [Fact]
-        public async void Test_RunOne()
-        {
-            var runOnce = new RunOnce<int>();
-
-            var count = 0;
-            
-            Parallel.For(0, 10, i =>
-            {
-                // should only increment the first time, and cache subsequent requests
-                var value = runOnce.RunAsync(async () =>
-                {
-                    count++;
-                    await Task.Delay(1000);
-                    return count;
-                });
-                
-                Assert.Equal(1, count);
-            });
-
-            // delay to let the original task finish, and then run again
-            await Task.Delay(2000);
-            var value = await runOnce.RunAsync(async () =>
-            {
-                count++;
-                await Task.Delay(1000);
-                return count;
-            });
-            
-            Assert.Equal(2, value);
-            
-        }
-
         // [Fact]
-        // public void Test_Txt_Request()
+        // public async void Test_RunOne()
         // {
-        //     var requestResolver = new RequestResolver(null, null,RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "http://dexih.dataexpertsgroup.com/api/Remote/GetTxtRecords");
+        //     var runOnce = new RunOnce<int>();
+        //
+        //     var count = 0;
         //     
-        //     var domain = new Domain("dexih.com");
+        //     Parallel.For(0, 10, i =>
+        //     {
+        //         // should only increment the first time, and cache subsequent requests
+        //         runOnce.RunAsync(async () =>
+        //         {
+        //             count++;
+        //             await Task.Delay(1000);
+        //             return count;
+        //         });
+        //         
+        //         Assert.Equal(1, count);
+        //     });
+        //
+        //     // delay to let the original task finish, and then run again
+        //     await Task.Delay(2000);
+        //     var value = await runOnce.RunAsync(async () =>
+        //     {
+        //         count++;
+        //         await Task.Delay(1000);
+        //         return count;
+        //     });
         //     
-        //     var question = new Question(domain, RecordType.TXT, RecordClass.IN);
-        //     var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>() {});
-        //     var resolve = requestResolver.Resolve(request).Result;
+        //     Assert.Equal(2, value);
         //     
-        //     Assert.Equal(1, resolve.AnswerRecords.Count);
         // }
+
+        [Fact]
+        public async void Test_Txt_Request()
+        {
+            var requestResolver = new RequestResolver(null, new DefaultHttpClientFactory(),RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "https://dexih.com/api/Remote/GetTxtRecords");
+            
+            var domain = new Domain("dexih.com");
+            
+            var question = new Question(domain, RecordType.TXT, RecordClass.IN);
+            var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>());
+            var resolve = await requestResolver.Resolve(request);
+            
+            Assert.Equal(1, resolve.AnswerRecords.Count);
+        }
+    }
+    
+    public sealed class DefaultHttpClientFactory : IHttpClientFactory
+    {
+        public HttpClient CreateClient(string name) => new HttpClient();
     }
 }
