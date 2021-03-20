@@ -99,13 +99,15 @@ namespace Dexih.Dns
                             {
                                 foreach (var (key, value) in txtValues)
                                 {
-                                    // if (question.Name.ToString().ToLower().EndsWith(key))
-                                    // {
-                                        // IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
-                                        // response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
-                                    // }
-                                    IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
-                                    response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
+                                    if (question.Name.ToString().ToLower().EndsWith(key))
+                                    {
+                                        IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
+                                        response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
+                                    }
+                                    else
+                                    {
+                                        response.AnswerRecords.Add(new TextResourceRecord(question.Name, key, value, _ttl));
+                                    }
                                 }
                             }
                         }
