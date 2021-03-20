@@ -86,7 +86,7 @@ namespace Dexih.Dns.Tests
         [Fact]
         public async void Test_Txt_Request()
         {
-            var url = "http://localhost:5000";
+            var url = "https://dexih.dataexpertsgroup.com";
 
             var httpRequest = new HttpClient();
             await httpRequest.GetAsync($"{url}/api/Remote/AddTxtRecord");
@@ -105,7 +105,7 @@ namespace Dexih.Dns.Tests
 
             var value = Encoding.Default.GetString(txtRecord.First().Data);
             
-            Assert.Equal("test0=sample value", value);
+            Assert.Equal("sample value", value.Trim());
         }
     }
     
