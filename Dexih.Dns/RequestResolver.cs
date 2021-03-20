@@ -104,7 +104,8 @@ namespace Dexih.Dns
                                         // IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
                                         // response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
                                     // }
-                                    response.AnswerRecords.Add(new TextResourceRecord(question.Name, key, value, _ttl));
+                                    IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
+                                    response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
                                 }
                             }
                         }

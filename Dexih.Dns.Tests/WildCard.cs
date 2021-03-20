@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using DNS.Protocol;
 using DNS.Protocol.ResourceRecords;
@@ -83,15 +86,26 @@ namespace Dexih.Dns.Tests
         [Fact]
         public async void Test_Txt_Request()
         {
-            var requestResolver = new RequestResolver(null, new DefaultHttpClientFactory(),RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, "https://dexih.com/api/Remote/GetTxtRecords");
+            var url = "http://localhost:5000";
+
+            var httpRequest = new HttpClient();
+            await httpRequest.GetAsync($"{url}/api/Remote/AddTxtRecord");
+            
+            var requestResolver = new RequestResolver(null, new DefaultHttpClientFactory(),RootAddress, new [] {"20.20.20.20"}, "dexih.com", "gholland@dataexpertsgroup.com", 123, 60, $"{url}/api/Remote/GetTxtRecords");
             
             var domain = new Domain("dexih.com");
             
             var question = new Question(domain, RecordType.TXT, RecordClass.IN);
             var request = new Request(new Header(), new List<Question>() {question}, new List<IResourceRecord>());
             var resolve = await requestResolver.Resolve(request);
+
+            var txtRecord = resolve.AnswerRecords.Where(c => c.Type == RecordType.TXT);
             
-            Assert.Equal(1, resolve.AnswerRecords.Count);
+            Assert.Equal(1, txtRecord.Count());
+
+            var value = Encoding.Default.GetString(txtRecord.First().Data);
+            
+            Assert.Equal("test0=sample value", value);
         }
     }
     
