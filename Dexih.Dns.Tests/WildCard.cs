@@ -101,11 +101,11 @@ namespace Dexih.Dns.Tests
 
             var txtRecord = resolve.AnswerRecords.Where(c => c.Type == RecordType.TXT);
             
-            Assert.Equal(1, txtRecord.Count());
+            Assert.True(txtRecord.Any());
 
-            var value = Encoding.Default.GetString(txtRecord.First().Data);
-            
-            Assert.Equal("sample value", value.Trim());
+            var value = Encoding.Default.GetString(txtRecord.First().Data).Substring(1);
+
+            Assert.Equal("test0=sample value", value);
         }
     }
     
