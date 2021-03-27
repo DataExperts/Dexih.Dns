@@ -14,6 +14,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Dexih.Dns
 {
+    class KeyValue
+    {
+        public string key { get; set; }
+        public string value { get; set; }
+    }
+    
     public class RequestResolver : IRequestResolver
     {
         private readonly ConcurrentDictionary<string, IPAddress> _ipAddressRecords;
@@ -87,26 +93,25 @@ namespace Dexih.Dns
                             var httpClient = _clientFactory.CreateClient();
                             // var requestMessage = new HttpRequestMessage(HttpMethod.Get, _txtUrl);
                             var txtResponse = await httpClient.GetAsync(_txtUrl, cancellationToken);
-                            List<KeyValuePair<string, string>> txtValues = null;
+                            List<KeyValue> txtValues = null;
                             if (txtResponse.IsSuccessStatusCode)
                             {
                                 // var jsonString = await txtResponse.Content.ReadAsStringAsync();
-                                // return System.Text.Json.JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(jsonString);
-                                txtValues = await JsonSerializer.DeserializeAsync<List<KeyValuePair<string, string>>>(await txtResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
+                                txtValues = await JsonSerializer.DeserializeAsync<List<KeyValue>>(await txtResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
                             }
 
                             if (txtValues != null)
                             {
-                                foreach (var (key, value) in txtValues)
+                                foreach (var keyValue in txtValues)
                                 {
-                                    if (question.Name.ToString().ToLower().EndsWith(key))
+                                    if (question.Name.ToString().ToLower().EndsWith(keyValue.key))
                                     {
-                                        IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(value)};
+                                        IList<CharacterString> characterStrings = new List<CharacterString> {new CharacterString(keyValue.value)};
                                         response.AnswerRecords.Add(new TextResourceRecord(question.Name, characterStrings, _ttl));
                                     }
                                     else
                                     {
-                                        response.AnswerRecords.Add(new TextResourceRecord(question.Name, key, value, _ttl));
+                                        response.AnswerRecords.Add(new TextResourceRecord(question.Name, keyValue.key, keyValue.value, _ttl));
                                     }
                                 }
                             }
